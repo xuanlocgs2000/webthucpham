@@ -15,3 +15,4 @@ class CategoryProduct extends Controller
         
     }
 }
+ 
