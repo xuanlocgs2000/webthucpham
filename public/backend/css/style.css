@@ -67,6 +67,15 @@ body a:hover {
 
 /*sidebar navigation*/
 
+span.fa-thumb-styling.fa.fa-thumbs-up {
+    font-size: 28px;
+    color: green;
+}
+
+span.fa-thumb-styling.fa.fa-thumbs-down {
+    font-size: 28px;
+}
+
 #sidebar {
     width: 240px;
     height: 100%;
@@ -3984,4 +3993,8 @@ span.text-alert {
     text-align: left;
     font-weight: bold;
     display: block;
+}
+
+a.active.styling-edit {
+    font-size: 20px;
 }

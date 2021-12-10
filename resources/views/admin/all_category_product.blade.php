@@ -27,6 +27,13 @@
             </div>
           </div>
           <div class="table-responsive">
+            <?php
+            $message = Session:: get('message');
+            if($message){
+              echo '<span class="text-alert">'.'!!!'.$message.'</span>';
+              Session::put('message',null);
+            }
+          ?>
             <table class="table table-striped b-t b-light">
               <thead>
                 <tr>
@@ -46,18 +53,28 @@
                 <tr>
                   <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
                   <td>{{ $cate_pro->category_name }}</td>
-                  <td><span class="text-ellipsis"><?php
+                  <td><span class="text-ellipsis">
+                    <?php
                     if($cate_pro->category_status ==0){
-                      echo 'Ẩn';
+                      ?>
+                      <a href="{{ URL::to('/unactive-category-product/'.$cate_pro->category_id) }}" ><span  class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                    <?php
                     }
                     else{
-                      echo 'Hiển thị';
+                      ?>
+                      <a href="{{ URL::to('/active-category-product/'.$cate_pro->category_id) }}." ><span  class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+
+                    <?php
                     }
                     ?></span></td>
                  
                  
                   <td>
-                    <a href="" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+                    <a href="{{URL::to ('/edit-category-product/'.$cate_pro->category_id) }}" class="active styling-edit" ui-toggle-class="">
+                      <i class="fa fa-pencil-square-o text-sucsess text-active"></i></a>
+                      <a onclick="return confirm('Bạn chắc chắn muốn xóa mục này?')" href="{{URL::to ('/delete-category-product/'.$cate_pro->category_id) }}" class="active styling-edit" ui-toggle-class="">
+                      <i class="fa fa-times text-danger text"></i>
+                    </a>
                   </td>
                 </tr>
                 @endforeach

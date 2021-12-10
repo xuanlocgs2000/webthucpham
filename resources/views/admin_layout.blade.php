@@ -102,6 +102,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         
                     </ul>
                 </li>
+				<li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Nhà sản xuất</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{ URL::to('/add-brand') }}">Thêm mới</a></li>
+						<li><a href="{{ URL::to('/all-brand') }}">Quản lí</a></li>
+                        
+                    </ul>
+                </li>
                 
             </ul>            </div>
         <!-- sidebar menu end-->
