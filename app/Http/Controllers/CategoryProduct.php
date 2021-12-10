@@ -66,5 +66,5 @@ class CategoryProduct extends Controller
         return Redirect::to('all-category-product');  
     }
 }
-l
+
   
