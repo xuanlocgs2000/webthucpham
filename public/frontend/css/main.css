@@ -72,7 +72,7 @@ a#scrollUp i {
 **************************/
 
 .header_top {
-    background: none repeat scroll 0 0 #F0F0E9;
+    background: none repeat scroll 0 0 #78e08f;
 }
 
 .contactinfo ul li:first-child {
@@ -652,7 +652,7 @@ ul.sub-menu {
 
 .left-sidebar h2,
 .brands_products h2 {
-    color: #FE980F;
+    color: #c23616;
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     font-weight: 700;
@@ -822,7 +822,7 @@ h2.title:before {
 }
 
 h2.title {
-    color: #3498db;
+    color: #1b6339;
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     font-weight: 700;
@@ -833,13 +833,20 @@ h2.title {
 }
 
 .product-image-wrapper {
-    border: 1px solid #F7F7F5;
+    border: 1px solid #4b7e56;
     overflow: hidden;
     margin-bottom: 30px;
 }
 
 .single-products {
     position: relative;
+}
+
+.price-sale {
+    font-size: 1.5rem;
+    text-decoration: line-through;
+    color: #929292;
+    margin-right: 10px;
 }
 
 .new,
@@ -865,9 +872,9 @@ h2.title {
 
 .productinfo p {
     font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    color: #696763;
+    font-size: 18px;
+    font-weight: 500;
+    color: #0f0a01;
 }
 
 .productinfo img {
@@ -932,7 +939,7 @@ h2.title {
     color: #696763;
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
 
 .add-to-cart:hover {
