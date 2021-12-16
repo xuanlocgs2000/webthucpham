@@ -23,7 +23,7 @@ class AdminController extends Controller
         }
     }
     public function index(){
-        $this->AuthLogin();
+    
         return view('admin_login');
     }
     public function show_dashboard(){
