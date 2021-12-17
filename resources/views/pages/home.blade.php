@@ -6,10 +6,10 @@
                         @foreach ($all_product as $key=>$product)                           
                       
                         <div class="col-sm-4">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
+                            <div class="product-image-wrapper" >
+                                <div class="single-products" >
                                         <div class="productinfo text-center">
-                                            <img src="{{ URL::to('public/upload/product/'.$product->product_image) }}" alt="" width="120" height="220" />
+                                            <img src="{{ URL::to('public/upload/product/'.$product->product_image) }}" alt="" width="60" height="185" />
                                             <h2>{{number_format($product->product_price).' '.'đ' }}</h2>
                                             <h4 class="price-sale" >{{number_format($product->product_sale).' '.'đ' }}</h4>
                                             <p>{{$product->product_name}}</p>
