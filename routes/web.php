@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 //Frontend
 Route::get('/','HomeController@index');
 Route::get('/trang-chu','HomeController@index');
+//Danh mục sản phẩm
+Route::get('/danh-muc-san-pham/{category_id}','CategoryProduct@show_category_home');
+Route::get('/nha-cung-cap/{brand_id}','BrandProduct@show_brand_home');
+Route::get('/chi-tiet-san-pham/{product_id}','ProductController@details_product');
+
 
 //Admin sever
 Route::get('/admin','AdminController@index');
@@ -23,7 +28,7 @@ Route::get('/dashboard','AdminController@show_dashboard');
 Route::post('/admin-dashboard','AdminController@dashboard');
 Route::get('/logout','AdminController@logout');
 
-//category product
+//Danh mục sản phẩm admin
 Route::get('/add-category-product','CategoryProduct@add_category_product');
 Route::get('/edit-category-product/{category_product_id}','CategoryProduct@edit_category_product');
 Route::get('/delete-category-product/{category_product_id}','CategoryProduct@delete_category_product');
@@ -35,7 +40,7 @@ Route::get('/active-category-product/{category_product_id}','CategoryProduct@act
 Route::post('/save-category-product','CategoryProduct@save_category_product');
 Route::post('/update-category-product/{category_product_id}','CategoryProduct@update_category_product');
 
-//Brand product
+//NSX admin
 Route::get('/add-brand-product','BrandProduct@add_brand_product');
 
 Route::get('/edit-brand-product/{brand_product_id}','BrandProduct@edit_brand_product');
@@ -46,7 +51,7 @@ Route::get('/active-brand-product/{brand_product_id}','BrandProduct@active_brand
 Route::post('/save-brand-product','BrandProduct@save_brand_product');
 Route::post('/update-brand-product/{brand_product_id}','BrandProduct@update_brand_product');
 
-//Product
+//Product admin
 Route::get('/add-product','ProductController@add_product');
 Route::get('/edit-product/{product_id}','ProductController@edit_product');
 Route::get('/delete-product/{product_id}','ProductController@delete_product');
@@ -55,3 +60,6 @@ Route::get('/unactive-product/{product_id}','ProductController@unactive_product'
 Route::get('/active-product/{product_id}','ProductController@active_product');
 Route::post('/save-product','ProductController@save_product');
 Route::post('/update-product/{product_id}','ProductController@update_product');
+
+//Giỏ hàng
+Route::post('/save-cart','CartController@save_cart');
