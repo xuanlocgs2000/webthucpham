@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Cart;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,3 +64,5 @@ Route::post('/update-product/{product_id}','ProductController@update_product');
 
 //Giỏ hàng
 Route::post('/save-cart','CartController@save_cart');
+Route::post('/show-cart','CartController@show_cart');
+
