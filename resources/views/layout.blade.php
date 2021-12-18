@@ -57,7 +57,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="index.html"><img src="public/frontend/images/home/logo2.png" alt="" width="145" height="39"  /></a>
+                            <a href="{{URL::to('/trang-chu')}}"><img src="public/frontend/images/home/logo2.png" alt="" width="145" height="39"  /></a>
                         </div>
                         <div class="btn-group pull-right">
                             <div class="btn-group">
