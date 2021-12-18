@@ -39,7 +39,7 @@
                             <p>Web ID: 1089772</p>
                         </td>
                         <td class="cart_price">
-                            <p>{{ number_format($v_content->price).' '.'đ' }}</p>
+                            <p>{{ number_format($v_content->price, 0, ',', '.').' '.'đ' }}</p>
                         </td>
                         <td class="cart_quantity">
                             <div class="cart_quantity_button">
@@ -59,7 +59,7 @@
                             <p class="cart_total_price">
                                 <?php
                                     $subtotal = $v_content->price * $v_content->qty;
-                                    echo   number_format($subtotal).' '.'đ'
+                                    echo   number_format($subtotal, 0, ',', '.').' '.'đ'
                                 ?>
                             </p>
                         </td>
@@ -143,7 +143,7 @@
                         <li>Thành tiền <span>{{ Cart::total(0,',','.').' '.'đ' }}</span></li>
                     </ul>
                         {{-- <a class="btn btn-default update" href="">Update</a> --}}
-                        <a class="btn btn-default check_out" href="{{ URL::to('/login-checkout/') }}">Thanh toán</a>
+                        <a class="btn btn-default check_out" href="{{ URL::to('/login-checkout') }}">Thanh toán</a>
                 </div>
             </div>
         </div>
