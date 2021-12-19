@@ -17,6 +17,8 @@ use App\Http\Controllers\Cart;
 //Frontend
 Route::get('/','HomeController@index');
 Route::get('/trang-chu','HomeController@index');
+Route::post('/tim-kiem','HomeController@search');
+
 //Danh mục sản phẩm
 Route::get('/danh-muc-san-pham/{category_id}','CategoryProduct@show_category_home');
 Route::get('/nha-cung-cap/{brand_id}','BrandProduct@show_brand_home');
@@ -62,6 +64,9 @@ Route::get('/active-product/{product_id}','ProductController@active_product');
 Route::post('/save-product','ProductController@save_product');
 Route::post('/update-product/{product_id}','ProductController@update_product');
 
+
+
+
 //Giỏ hàng
 Route::post('/save-cart','CartController@save_cart');
 Route::post('/update-cart-quantity','CartController@update_cart_quantity');
@@ -71,8 +76,20 @@ Route::get('/delete-to-cart/{rowId}','CartController@delete_to_cart');
 
 //Thanh toán
 Route::get('/login-checkout','CheckoutController@login_checkout');
+Route::get('/logout-checkout','CheckoutController@logout_checkout');
 Route::post('/add-customer','CheckoutController@add_customer');
+Route::post('/order-place','CheckoutController@order_place');
+
+Route::post('/login-customer','CheckoutController@login_customer');
+
 Route::get('/checkout','CheckoutController@checkout');
+Route::post('/save-checkout-customer','CheckoutController@save_checkout_customer');
+Route::get('/payment','CheckoutController@payment');
+//quản lí đơn hàng
+Route::get('/manage-order','CheckoutController@manage_order');
+Route::get('/view-order/{orderId}','CheckoutController@view_order');
+
+
 
 
 

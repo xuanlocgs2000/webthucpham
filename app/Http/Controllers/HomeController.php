@@ -22,4 +22,23 @@ class HomeController extends Controller
         ->with('all_product',$all_product);
         
     }
+    public function search(Request $request){
+        $keyword =$request->keywords_submit;
+        $cate_product = DB::table('tbl_category_product')
+        ->where('category_status','0')->orderby('category_id','asc')->get();
+        $brand_product = DB::table('tbl_brand')
+        ->where('brand_status','0')->orderby('brand_id','asc')->get();
+        $search_product = DB::table('tbl_product')
+        ->where('product_name','like','%'.$keyword.'%')->get();
+
+        return view('pages.product.search')
+        ->with('category',$cate_product)
+        ->with('brand', $brand_product)
+        ->with('search_product', $search_product)
+
+        ;
+        
+
+
+    }
 }

@@ -30,6 +30,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="{{ asset('public/backend/js/jquery2.0.3.min.js') }}"></script>
 <script src="{{ asset('public/backend/js/raphael-min.js') }}"></script>
 <script src="{{ asset('public/backend/js/morris.js') }}"></script>
+<script src="{{ asset('public/backend/ckeditor/ckeditor.js') }}"></script>
+
 </head>
 <body>
 <section id="container">
@@ -110,6 +112,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <ul class="sub">
 						<li><a href="{{ URL::to('/add-brand-product') }}">Thêm mới</a></li>
 						<li><a href="{{ URL::to('/all-brand-product') }}">Quản lí</a></li>
+                        
+                    </ul>
+                </li>
+				<li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Đơn hàng</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{ URL::to('/manage-order ') }}">Quản lí đơn hàng</a></li>
+						
                         
                     </ul>
                 </li>
