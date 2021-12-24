@@ -3,9 +3,24 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{-- seo --}}
+    <meta name="description" content="{{$meta_desc}}">
+    <meta name="keywords" content="{{$meta_keywords}}"/>
+    <meta name="robots" content="INDEX,FOLLOW"/>
+    <link  rel="canonical" href="{{$url_canonical}}" />
+    <link  rel="icon" type="image/x-icon" href="" />
+    {{-- !seo --}}
+    {{-- <meta property="og:image" content="{{$image_og}}" /> --}}
+    <meta property="og:site_name" content="http://localhost:81/webthucpham" />
+    <meta property="og:description" content="{{$meta_desc}}" />
+    <meta property="og:title" content="{{$meta_title}}" />
+    <meta property="og:url" content="{{$url_canonical}}" />
+    <meta property="og:type" content="website" />
+
+    {{-- share --}}
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Trang chủ | Đất Trời Farm</title>
+    <title>{{$meta_title}}</title>
     <link href="{{asset('public/frontend/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('public/frontend/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('public/frontend/css/prettyPhoto.css')}}" rel="stylesheet">
@@ -303,13 +318,13 @@
                             </div>
                         </div><!--/brands_products-->
                         
-                        <div class="price-range"><!--price-range-->
+                        {{-- <div class="price-range"><!--price-range-->
                             <h2>Price Range</h2>
                             <div class="well text-center">
                                  <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
                                  <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
                             </div>
-                        </div><!--/price-range-->
+                        </div><!--/price-range--> --}}
                         
                         {{-- <div class="shipping text-center"><!--shipping-->
                             <img src="images/home/shipping.jpg" alt="" />
@@ -496,5 +511,9 @@
     <script src="{{asset('public/frontend/js/price-range.js')}}"></script>
     <script src="{{asset('public/frontend/js/jquery.prettyPhoto.js')}}"></script>
     <script src="{{asset('public/frontend/js/main.js')}}"></script>
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="3tqTUgTJ"></script>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="nN3lZzaq"></script>
 </body>
 </html>}}}

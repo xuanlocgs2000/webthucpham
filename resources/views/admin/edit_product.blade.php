@@ -36,17 +36,17 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Hình ảnh </label>
-                            <input type="file" name="product_image" class="form-control" id="exampleInputEmail1" >
+                            <input type="file" name="product_image" class="form-control" id="img" >
                             <img src="{{ URL::to('public/upload/product/'. $pro->product_image) }}" height="180" width="350">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả </label>
-                            <textarea style="resize:none" rows="5" type="text"  name="product_desc" class="form-control" id="exampleInputPassword1" >
+                            <textarea style="resize:none" rows="5" type="text"  name="product_desc" class="form-control" id="ckeditor3" >
                                 {{ $pro->product_desc }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Chi tiết sản phẩm</label>
-                            <textarea style="resize:none" rows="5" type="text"  name="product_content" class="form-control" id="exampleInputPassword1">
+                            <textarea style="resize:none" rows="5" type="text"  name="product_content" class="form-control" id="ckeditor4">
                                 {{ $pro->product_content }}</textarea>
                         </div>
                         <div class="form-group">

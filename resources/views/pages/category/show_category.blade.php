@@ -2,6 +2,8 @@
 @extends('layout')
 @section('content')
 <div class="features_items"><!--features_items-->
+    
+       <div class="fb-like" data-href="{{$url_canonical}}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>
                         @foreach ($category_name as $key=>$name)
                         <h2 class="title text-center">{{ $name->category_name }}</h2>
 
@@ -32,4 +34,10 @@
                        @endforeach
                        
                    </div><!--features_items-->
+                   <div class="fb-share-button" data-href="http://localhost:81/webthucpham"
+    data-layout="button_count" data-size="small"><a target="_blank"
+     href="https://www.facebook.com/sharer/sharer.php?u={{$url_canonical}}&amp;src=sdkpreparse"
+      class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
+      <div class="fb-comments" data-href="{{$url_canonical}}" data-width="" data-numposts="10"></div>
+                   
 @endsection

@@ -8,7 +8,13 @@ use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+        //seo
+        $meta_desc= "Đất trời farm, thực phẩm xanh, sạch, ngon";
+        $meta_keywords = "thuc pham sach, thực phẩm sạch, thực phẩm nhà làm";
+        $meta_title = "Thực phẩm bổ sung dinh dưỡng, thực phẩm sạch";
+        $url_canonical = $request->url();
+        //!seo
         $cate_product = DB::table('tbl_category_product')
         ->where('category_status','0')->orderby('category_id','asc')->get();
         $brand_product = DB::table('tbl_brand')
@@ -19,7 +25,14 @@ class HomeController extends Controller
         return view('pages.home')
         ->with('category',$cate_product)
         ->with('brand', $brand_product)
-        ->with('all_product',$all_product);
+        ->with('all_product',$all_product)
+        ->with('meta_desc', $meta_desc)
+        ->with('meta_keywords',$meta_keywords)
+        ->with('meta_title', $meta_title)
+        ->with('url_canonical',$url_canonical)
+        
+
+        ;
         
     }
     public function search(Request $request){

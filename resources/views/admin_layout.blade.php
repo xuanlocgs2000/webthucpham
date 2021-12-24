@@ -30,7 +30,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="{{ asset('public/backend/js/jquery2.0.3.min.js') }}"></script>
 <script src="{{ asset('public/backend/js/raphael-min.js') }}"></script>
 <script src="{{ asset('public/backend/js/morris.js') }}"></script>
-<script src="{{ asset('public/backend/ckeditor/ckeditor.js') }}"></script>
+
 
 </head>
 <body>
@@ -164,6 +164,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="{{ asset('public/backend/js/scripts.js') }}"></script>
 <script src="{{ asset('public/backend/js/jquery.slimscroll.js') }}"></script>
 <script src="{{ asset('public/backend/js/jquery.nicescroll.js') }}"></script>
+<script src="{{ asset('public/backend/ckeditor/ckeditor.js') }}"></script>
+<script >
+	CKEDITOR.replace('ckeditor');
+	CKEDITOR.replace('ckeditor1');
+	CKEDITOR.replace('ckeditor3');
+	CKEDITOR.replace('ckeditor4');
+
+</script>
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
 <script src="js/jquery.scrollTo.js"></script>
 <!-- morris JavaScript -->	
