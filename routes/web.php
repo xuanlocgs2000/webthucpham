@@ -89,6 +89,10 @@ Route::get('/payment','CheckoutController@payment');
 Route::get('/manage-order','CheckoutController@manage_order');
 Route::get('/view-order/{orderId}','CheckoutController@view_order');
 
+//send mail
+Route::get('/send-mail','HomeController@send_mail');
+
+
 
 
 
