@@ -38,6 +38,10 @@ class HomeController extends Controller
         
     }
     public function search(Request $request){
+        $meta_desc= "Tìm kiếm sản phẩm";
+        $meta_keywords = "Tìm kiếm sản phẩm";
+        $meta_title = "Tìm kiếm sản phẩm";
+        $url_canonical = $request->url();
         $keyword =$request->keywords_submit;
         $cate_product = DB::table('tbl_category_product')
         ->where('category_status','0')->orderby('category_id','asc')->get();
@@ -50,7 +54,10 @@ class HomeController extends Controller
         ->with('category',$cate_product)
         ->with('brand', $brand_product)
         ->with('search_product', $search_product)
-
+        ->with('meta_desc', $meta_desc)
+        ->with('meta_keywords',$meta_keywords)
+        ->with('meta_title', $meta_title)
+        ->with('url_canonical',$url_canonical)
         ;       
 
 

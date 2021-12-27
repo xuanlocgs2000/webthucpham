@@ -11,11 +11,11 @@
     <link  rel="icon" type="image/x-icon" href="" />
     {{-- !seo --}}
     {{-- <meta property="og:image" content="{{$image_og}}" /> --}}
-    <meta property="og:site_name" content="http://localhost:81/webthucpham" />
+    {{-- <meta property="og:site_name" content="http://localhost:81/webthucpham" />
     <meta property="og:description" content="{{$meta_desc}}" />
     <meta property="og:title" content="{{$meta_title}}" />
     <meta property="og:url" content="{{$url_canonical}}" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="website" /> --}}
 
     {{-- share --}}
     <meta name="description" content="">
@@ -28,6 +28,8 @@
     <link href="{{asset('public/frontend/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('public/frontend/css/main.css')}}" rel="stylesheet">
     <link href="{{asset('public/frontend/css/responsive.css')}}" rel="stylesheet">
+    <link href="{{asset('public/frontend/css/sweetalert.css')}}" rel="stylesheet">
+
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -511,9 +513,38 @@
     <script src="{{asset('public/frontend/js/price-range.js')}}"></script>
     <script src="{{asset('public/frontend/js/jquery.prettyPhoto.js')}}"></script>
     <script src="{{asset('public/frontend/js/main.js')}}"></script>
+    <script src="{{asset('public/frontend/js/sweetalert.min.js')}}"></script>
+
+    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
     <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="3tqTUgTJ"></script>
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="nN3lZzaq"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+       $('.add-to-cart').click(function(){
+           var id = $(this).data('id_product');
+           var cart_product_id =$('.cart_product_id_'+id).val();
+           var cart_product_name =$('.cart_product_name_'+id).val();
+           var cart_product_image =$('.cart_product_image_'+id).val();
+           var cart_product_price =$('.cart_product_price_'+id).val();
+           var cart_product_qty =$('.cart_product_qty_'+id).val();
+           var _token = $('input[name="_token"]').val();
+                    //   alert(cart_product_qty );
+           $.ajax({
+            url: '{{url('/add-cart-ajax')}}',
+                    method: 'POST',
+                    data:{cart_product_id:cart_product_id,cart_product_name:cart_product_name,
+                        cart_product_image:cart_product_image,cart_product_price:cart_product_price,
+                        cart_product_qty:cart_product_qty,_token:_token},
+                        success:function(data){
+                            alert(data);
+
+                        }
+           });
+     
+       });
+    });
+</script>
 </body>
 </html>}}}

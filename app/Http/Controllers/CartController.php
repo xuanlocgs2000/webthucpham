@@ -30,14 +30,23 @@ class CartController extends Controller
         
 
     }
-    public function show_cart(){
+    public function show_cart(Request $request){
+        $meta_desc= "Giỏ hàng";
+        $meta_keywords = "Giỏ hàng";
+        $meta_title = "Giỏ hàng";
+        $url_canonical = $request->url();
+
         $cate_product = DB::table('tbl_category_product')
         ->where('category_status','0')->orderby('category_id','desc')->get();
         $brand_product = DB::table('tbl_brand')
         ->where('brand_status','0')->orderby('brand_id','desc')->get();
         return view('pages.cart.show_cart')
         ->with('category',$cate_product)
-        ->with('brand', $brand_product);
+        ->with('brand', $brand_product)
+        ->with('meta_desc', $meta_desc)
+        ->with('meta_keywords',$meta_keywords)
+        ->with('meta_title', $meta_title)
+        ->with('url_canonical',$url_canonical);
     }
     public function delete_to_cart($rowId){
         Cart::remove($rowId);
@@ -49,5 +58,9 @@ class CartController extends Controller
         $qty = $request->cart_quantity;
         Cart::update($rowId,$qty);
         return Redirect::to('/show-cart');  
+    }
+    public function add_cart_ajax(Request $request){
+        $data = $request->all();
+        print_r($data);
     }
 }

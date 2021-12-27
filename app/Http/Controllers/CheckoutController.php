@@ -21,14 +21,24 @@ class CheckoutController extends Controller
 
     }
 }
-    public function login_checkout(){
+    public function login_checkout(Request $request){
+        $meta_desc= "Đăng nhập";
+        $meta_keywords = "Đăng nhập";
+        $meta_title = "Đăng nhập";
+        $url_canonical = $request->url();
+
         $cate_product = DB::table('tbl_category_product')
         ->where('category_status','0')->orderby('category_id','asc')->get();
         $brand_product = DB::table('tbl_brand')
         ->where('brand_status','0')->orderby('brand_id','asc')->get();
         return view('pages.checkout.login_checkout')
         ->with('category',$cate_product)
-        ->with('brand', $brand_product);
+        ->with('brand', $brand_product)
+        ->with('meta_desc', $meta_desc)
+        ->with('meta_keywords',$meta_keywords)
+        ->with('meta_title', $meta_title)
+        ->with('url_canonical',$url_canonical)
+        ;
     }
     public function add_customer(Request $request){
         $data = array();
