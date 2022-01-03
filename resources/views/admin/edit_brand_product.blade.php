@@ -7,13 +7,15 @@
                 <header class="panel-heading">
                    Cập nhật danh mục sản phẩm
                 </header>
-                <?php
-                $message = Session:: get('message');
-                if($message){
-                    echo '<span class="text-alert">'.'!!!'.$message.'</span>';
-                    Session::put('message',null);
-                }
-            ?> 
+                @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @elseif(session()->has('error'))
+                 <div class="alert alert-danger">
+                    {{ session()->get('error') }}
+                </div>
+            @endif
             <div class="panel-body">
                     @foreach ($edit_brand_product as $key=>$edit_value)                     
                          <div class="position-center">

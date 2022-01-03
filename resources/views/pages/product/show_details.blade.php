@@ -50,8 +50,14 @@
                     <i class="fa fa-shopping-cart"></i>
                     Mua ngay
                 </button>
+                
             </span>
         </form>
+        {{-- <button type="button" class="btn btn-default add-to-cart" name="add-to-cart " 
+                                            data-id_product="{{$value->product_id}}"  >                                                
+                                                Thêm vào giỏ hàng 
+                                            </button> --}}
+                                            
             <p><b>Loại sản phẩm:</b> {{ $value->category_name }}</p>
             <p><b>Tình trạng:</b> Còn hàng</p>
             <p><b>Chứng chỉ :</b> BYT-ATVSTP 2008-2018</p>

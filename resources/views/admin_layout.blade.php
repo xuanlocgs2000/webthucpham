@@ -123,8 +123,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <ul class="sub">
 						<li><a href="{{ URL::to('/manage-order ') }}">Quản lí đơn hàng</a></li>
 						
-                        
                     </ul>
+                </li>
+				<li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Mã giảm giá</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{ URL::to('/insert-coupon ') }}">Thêm mới </a></li>
+						<li><a href="{{ URL::to('/list-coupon ') }}">Quản lí </a></li>
+
+					</ul>
                 </li>
 				<li class="sub-menu">
                     <a href="javascript:;">
@@ -136,6 +146,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<li><a href="{{ URL::to('/all-product') }}">Quản lí</a></li>
                         
                     </ul>
+                </li>
+				<li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Vận chuyển</span>
+                    </a>
+                    <ul class="sub">
+						
+						<li><a href="{{ URL::to('/delivery ') }}">Quản lí </a></li>
+
+					</ul>
                 </li>
                 
             </ul>            </div>
@@ -152,7 +173,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
  <!-- footer -->
 		  <div class="footer">
 			<div class="wthree-copyright">
-			  <p>© 2017 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+			  <p>© 2021KMA GROUP5</p>
 			</div>
 		  </div>
   <!-- / footer -->
@@ -165,11 +186,85 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="{{ asset('public/backend/js/jquery.slimscroll.js') }}"></script>
 <script src="{{ asset('public/backend/js/jquery.nicescroll.js') }}"></script>
 <script src="{{ asset('public/backend/ckeditor/ckeditor.js') }}"></script>
+<script>
+	$(document).ready(function(){
+		fetch_delivery();
+		function fetch_delivery(){
+			var _token = $('input[name="_token"]').val();
+			$.ajax({
+				url:'{{ url('/select-feeship') }}',
+				method: 'POST',
+				data:{_token:_token},
+				success:function(data){
+					$('#load_delivery').html(data);
+				}
+			});
+		}
+		$(document).on('blur','.fee_feeship_edit',function(){
+			var feeship_id= $(this).data('feeship_id');
+			var fee_value = $(this).text();
+			var _token = $('input[name="_token"]').val();
+			$.ajax({
+				url:'{{ url('/update-delivery') }}',
+				method: 'POST',
+				data:{feeship_id:feeship_id,fee_value:fee_value,_token:_token},
+				success:function(data){
+					fetch_delivery();
+					
+				}
+			});
+		});
+		$('.add_delivery').click(function(){
+			var city = $('.city').val();
+			var district = $('.district').val();
+			var wards = $('.wards').val();
+			var fee_ship = $('.fee_ship').val();
+			var _token = $('input[name="_token"]').val();
+		// 	alert(city);
+		// 	alert(district);
+		// 	alert(wards);
+		// 	alert(fee_ship);
+		$.ajax({
+				url:'{{ url('/insert-delivery') }}',
+				method: 'POST',
+				data:{city:city,district:district,wards:wards,fee_ship:fee_ship,_token:_token},
+				success:function(data){
+					fetch_delivery();
+				}
+			});
+		});
+		$('.choose').on('change',function(){
+			var action = $(this).attr('id');
+			var ma_id= $(this).val();
+			var _token = $('input[name="_token"]').val();
+			var result='';
+			// alert(action);
+			// alert( matp);
+			// alert( _token);
+			
+			if(action == 'city'){
+				result ='district';
+			}else{
+				result = 'wards'; 
+			}
+			$.ajax({
+				url:'{{ url('/select-delivery') }}',
+				method: 'POST',
+				data:{action:action,ma_id:ma_id,_token:_token},
+				success:function(data){
+					$('#'+result).html(data);
+				}
+			});
+		});
+	})
+</script>
+
 <script >
 	CKEDITOR.replace('ckeditor');
 	CKEDITOR.replace('ckeditor1');
 	CKEDITOR.replace('ckeditor3');
 	CKEDITOR.replace('ckeditor4');
+	CKEDITOR.replace('ckeditor5');
 
 </script>
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->

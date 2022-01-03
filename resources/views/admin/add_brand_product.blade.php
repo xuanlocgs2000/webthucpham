@@ -9,12 +9,23 @@
                 </header>
                 <div class="panel-body">
                     <?php
-		$message = Session:: get('message');
-		if($message){
-			echo '<span class="text-alert">'.'!!!'.$message.'</span>';
-			Session::put('message',null);
-		}
+		// $message = Session:: get('message');
+		// if($message){
+		// 	echo '<span class="text-alert">'.'!!!'.$message.'</span>';
+		// 	Session::put('message',null);
+		// }
 	?>
+    @if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+@elseif(session()->has('error'))
+     <div class="alert alert-danger">
+        {{ session()->get('error') }}
+    </div>
+@endif
+
+    
                     <div class="position-center">
                         <form role="form" method="post" action="{{ URL::to('/save-brand-product') }}">
                             {{ csrf_field() }}
@@ -24,7 +35,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả</label>
-                            <textarea style="resize:none" rows="5" type="text"  name="brand_desc" class="form-control" id="exampleInputPassword1" placeholder="Mô tả danh mục"></textarea>
+                            <textarea style="resize:none" rows="5" type="text"  name="brand_desc" class="form-control" id="ckeditor5" placeholder="Mô tả danh mục"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Hiển thị</label>

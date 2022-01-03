@@ -8,13 +8,15 @@
                    Thêm mới  sản phẩm
                 </header>
                 <div class="panel-body">
-                    <?php
-		$message = Session:: get('message');
-		if($message){
-			echo '<span class="text-alert">'.'!!!'.$message.'</span>';
-			Session::put('message',null);
-		}
-	?>
+                    @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                @elseif(session()->has('error'))
+                     <div class="alert alert-danger">
+                        {{ session()->get('error') }}
+                    </div>
+                @endif
                     <div class="position-center">
                         <form role="form" method="post" action="{{ URL::to('/save-product') }}" enctype="multipart/form-data">
                             {{ csrf_field() }}

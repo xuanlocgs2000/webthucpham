@@ -63,7 +63,12 @@ Route::get('/unactive-product/{product_id}','ProductController@unactive_product'
 Route::get('/active-product/{product_id}','ProductController@active_product');
 Route::post('/save-product','ProductController@save_product');
 Route::post('/update-product/{product_id}','ProductController@update_product');
-
+// vận chuyển
+Route::get('/delivery','DeliveryController@delivery');
+Route::post('/select-delivery','DeliveryController@select_delivery');
+Route::post('/insert-delivery','DeliveryController@insert_delivery');
+Route::post('/select-feeship','DeliveryController@select_feeship');
+Route::post('/update-delivery','DeliveryController@update_delivery');
 
 
 
@@ -96,9 +101,28 @@ Route::post('/login-customer','CheckoutController@login_customer');
 Route::get('/checkout','CheckoutController@checkout');
 Route::post('/save-checkout-customer','CheckoutController@save_checkout_customer');
 Route::get('/payment','CheckoutController@payment');
+Route::post('/select-delivery-home','CheckoutController@select_delivery_home');
+Route::post('/calculate-fee','CheckoutController@calculate_fee');
+Route::get('/del-fee','CheckoutController@del_fee');
+Route::post('/confirm-order','CheckoutController@confirm_order');
+
+
+//coupon
+Route::post('/check-coupon','CartController@check_coupon');
+Route::get('/unset-coupon','CouponController@unset_coupon');
+
+
+//coupon admin
+Route::get('/insert-coupon','CouponController@insert_coupon');
+Route::get('/list-coupon','CouponController@list_coupon');
+Route::get('/delete-coupon/{coupon_id}','CouponController@delete_coupon');
+Route::post('/insert-coupon-code','CouponController@insert_coupon_code');
+
 //quản lí đơn hàng
-Route::get('/manage-order','CheckoutController@manage_order');
-Route::get('/view-order/{orderId}','CheckoutController@view_order');
+Route::get('/manage-order','OderController@manage_order');
+Route::get('/view-order/{order_code}','OderController@view_order');
+// Route::get('/manage-order','CheckoutController@manage_order');
+// Route::get('/view-order/{orderId}','CheckoutController@view_order');
 
 //send mail
 Route::get('/send-mail','HomeController@send_mail');

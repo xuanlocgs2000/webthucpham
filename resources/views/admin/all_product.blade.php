@@ -27,13 +27,15 @@
             </div>
           </div>
           <div class="table-responsive">
-            <?php
-            $message = Session:: get('message');
-            if($message){
-              echo '<span class="text-alert">'.'!!!'.$message.'</span>';
-              Session::put('message',null);
-            }
-          ?>
+            @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                @elseif(session()->has('error'))
+                     <div class="alert alert-danger">
+                        {{ session()->get('error') }}
+                    </div>
+                @endif
             <table class="table table-striped b-t b-light">
               <thead>
                 <tr>
@@ -60,7 +62,10 @@
                   <td><img src="public/upload/product/{{ $pro->product_image }}" alt="" height="60" width="100"></td>
                   <td>{{ $pro->category_name}}</td>
                   <td>{{ $pro->brand_name }}</td>
-                  <td>{{ $pro->product_price }}</td>
+                  <td>
+                    @php
+                       echo(number_format($pro->product_price,0,',','.')).' đ' ;
+                    @endphp  </td>
 
                   <td><span class="text-ellipsis">
                     <?php

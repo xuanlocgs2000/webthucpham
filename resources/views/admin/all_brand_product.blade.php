@@ -27,13 +27,15 @@
             </div>
           </div>
           <div class="table-responsive">
-            <?php
-            $message = Session:: get('message');
-            if($message){
-              echo '<span class="text-alert">'.'!!!'.$message.'</span>';
-              Session::put('message',null);
-            }
-          ?>
+            @if(session()->has('message'))
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+        @elseif(session()->has('error'))
+             <div class="alert alert-danger">
+                {{ session()->get('error') }}
+            </div>
+        @endif
             <table class="table table-striped b-t b-light">
               <thead>
                 <tr>
