@@ -99,7 +99,7 @@ class BrandProduct extends Controller
     }
     //--!End function admin
     //Hiện sản phẩm theo NSX
-    public function show_brand_home($brand_id){
+    public function show_brand_home(Request $request,$brand_id){
         $cate_product = DB::table('tbl_category_product')
         ->where('category_status','0')->orderby('category_id','asc')->get();
         $brand_product = DB::table('tbl_brand')
@@ -111,12 +111,24 @@ class BrandProduct extends Controller
         $brand_name = DB::table('tbl_brand')
         ->where('tbl_brand.brand_id',$brand_id)
         ->limit(1)->get();  //tên danh mục
+        foreach ( $brand_name as $key => $val) {
+            # code...
+            $meta_desc= $val-> brand_desc ;
+            $meta_keywords = $val->brand_desc ;
+            $meta_title = $val->brand_name;
+            $url_canonical = $request->url();
+            //seo
+        }
         return view('pages.brand.show_brand')
         ->with('category',$cate_product)
         ->with('brand', $brand_product)
         ->with('brand_by_id', $brand_by_id)
-        ->with('brand_name',$brand_name);
-        ;
+        ->with('brand_name',$brand_name)
+        ->with('meta_desc', $meta_desc)
+        ->with('meta_keywords',$meta_keywords)
+        ->with('meta_title', $meta_title)
+        ->with('url_canonical',$url_canonical);
+        
        
     }
 }

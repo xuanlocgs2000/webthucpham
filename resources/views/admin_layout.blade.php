@@ -92,6 +92,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <span>Menu</span>
                     </a>
                 </li>
+				{{-- <li>
+                    <a class="active" href="{{ URL::to('/manage-banner') }}">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Slider</span>
+                    </a>
+					<ul class="sub">
+						<li><a href="{{ URL::to('/add-category-product') }}">Thêm mới</a></li>
+						<li><a href="{{ URL::to('/all-category-product') }}">Quản lí</a></li>
+                        
+                    </ul>
+                </li> --}}
+				<li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Slider</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{ URL::to('/add-slider') }}">Thêm mới</a></li>
+						<li><a href="{{ URL::to('/manage-slider') }}">Quản lí</a></li>
+                        
+                    </ul>
+                </li>
                 
                 <li class="sub-menu">
                     <a href="javascript:;">

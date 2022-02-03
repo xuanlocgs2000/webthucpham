@@ -5,12 +5,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Session;
+use App\Models\Slider;
 use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
 
 {
        public function index(Request $request){
+        //slide
+        $slider = Slider::orderBy('slider_id','DESC')->take(4)->get();
         //seo
         $meta_desc= "Đất trời farm, thực phẩm xanh, sạch, ngon";
         $meta_keywords = "thuc pham sach, thực phẩm sạch, thực phẩm nhà làm";
@@ -32,6 +35,7 @@ class HomeController extends Controller
         ->with('meta_keywords',$meta_keywords)
         ->with('meta_title', $meta_title)
         ->with('url_canonical',$url_canonical)
+        ->with('slider',$slider)
         
 
         ;

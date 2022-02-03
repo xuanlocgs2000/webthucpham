@@ -102,7 +102,7 @@ class CategoryProduct extends Controller
         $category_name = DB::table('tbl_category_product')
         ->where('tbl_category_product.category_id',$category_id)
         ->limit(1)->get();
-        foreach ( $category_by_id as $key => $val) {
+        foreach ( $category_name as $key => $val) {
             # code...
             $meta_desc= $val->category_desc ;
             $meta_keywords = $val->meta_keywords ;

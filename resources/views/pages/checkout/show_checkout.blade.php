@@ -286,7 +286,7 @@
                                                 <a class="cart_quantity_delete" href="{{url('/del-fee')}}"><i class="fa fa-times"></i></a>
     
                                                 Phí vận chuyển <span>{{number_format(Session::get('fee'),0,',','.')}}đ</span></li> 
-                                                <?php $total_after_fee = $total - Session::get('fee'); ?>
+                                                <?php $total_after_fee = $total + Session::get('fee'); ?>
                                             @endif 
                                             <li>Tổng còn:
                                             @php 

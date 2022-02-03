@@ -165,13 +165,13 @@
               @if($coupon_condition==1)
                   @php
                   $total_after_coupon = ($total*$coupon_number)/100;
-                  echo 'Tổng giảm :'.number_format($total_after_coupon,0,',','.').'</br>';
-                  $total_coupon = $total - $total_after_coupon - $details->product_feeship;
+                  echo 'Tổng giảm :'.number_format($total_after_coupon,0,',','.').'đ'.'</br>';
+                  $total_coupon = $total - $total_after_coupon + $details->product_feeship;
                   @endphp
               @else 
                   @php
-                  echo 'Tổng giảm :'.number_format($coupon_number,0,',','.').'k'.'</br>';
-                  $total_coupon = $total - $coupon_number - $details->product_feeship;
+                  echo 'Tổng giảm :'.number_format($coupon_number,0,',','.').'đ'.'</br>';
+                  $total_coupon = $total - $coupon_number + $details->product_feeship;
 
                   @endphp
               @endif

@@ -69,7 +69,10 @@ Route::post('/select-delivery','DeliveryController@select_delivery');
 Route::post('/insert-delivery','DeliveryController@insert_delivery');
 Route::post('/select-feeship','DeliveryController@select_feeship');
 Route::post('/update-delivery','DeliveryController@update_delivery');
-
+//banner
+Route::get('/manage-slider','SliderController@manage_slider');
+Route::get('/add-slider','SliderController@add_slider');
+Route::post('/insert-slider','SliderController@insert_slider');
 
 
 //Giỏ hàng
@@ -119,6 +122,8 @@ Route::get('/delete-coupon/{coupon_id}','CouponController@delete_coupon');
 Route::post('/insert-coupon-code','CouponController@insert_coupon_code');
 
 //quản lí đơn hàng
+Route::get('/print-order/{checkout_code}','OderController@print_order');
+
 Route::get('/manage-order','OderController@manage_order');
 Route::get('/view-order/{order_code}','OderController@view_order');
 // Route::get('/manage-order','CheckoutController@manage_order');
