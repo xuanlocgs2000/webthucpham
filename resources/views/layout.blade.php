@@ -229,14 +229,14 @@
                                 $i++;
                             @endphp                        
                             <div class="item {{ $i==1? 'active': '' }}">
-                                <div class="col-sm-12">
+                                <div class="col-sm-11">
                                     {{-- <h1><span>ĐẤT TRỜI</span>FARM</h1> --}}
                                     
                                     {{-- <p>{{ $slide->slider_desc }}</p> --}}
                                     {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
                                 </div>
-                                <div class="col-sm-12">
-                                <img src="public/upload/slider/{{ $slide->slider_image }}" alt="" height="200px" width="100%" class="img img-responsive">
+                                <div class="col-sm-11">
+                                <img alt="{{ $slide->slider_desc }}" src="public/upload/slider/{{ $slide->slider_image }}" alt="" height="150px" width="100%" class="img img-responsive">
 
                                     {{-- <img src="public/upload/slider/{{ $slide->slider_image }}" class="girl img-responsive" alt="" /> --}}
                                     {{-- <img src="{{ ('public/frontend/images/home/pricing.png') }}"  class="pricing" alt="" /> --}}

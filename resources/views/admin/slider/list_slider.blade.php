@@ -61,14 +61,14 @@
                   <td>{{ $slide->slider_desc }}</td>
                   <td><span class="text-ellipsis">
                     <?php
-                    if($slide->slider_status ==0){
+                    if($slide->slider_status ==1){
                       ?>
-                      <a href="{{ URL::to('/unactive-slide/'.$slide->slider_id) }}" ><span  class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                      <a href="{{ URL::to('/unactive-slide/'.$slide->slider_id) }}" ><span  class="fa-thumb-styling fa fa-thumbs-up"></span>Hiện</a>
                     <?php
                     }
                     else{
                       ?>
-                      <a href="{{ URL::to('/active-slide/'.$slide->slider_id) }}." ><span  class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+                      <a href="{{ URL::to('/active-slide/'.$slide->slider_id) }}." ><span  class="fa-thumb-styling fa fa-thumbs-down"></span>ẨN</a>
 
                     <?php
                     }

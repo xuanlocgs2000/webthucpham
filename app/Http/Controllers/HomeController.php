@@ -13,7 +13,7 @@ class HomeController extends Controller
 {
        public function index(Request $request){
         //slide
-        $slider = Slider::orderBy('slider_id','DESC')->take(4)->get();
+        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
         //seo
         $meta_desc= "Đất trời farm, thực phẩm xanh, sạch, ngon";
         $meta_keywords = "thuc pham sach, thực phẩm sạch, thực phẩm nhà làm";

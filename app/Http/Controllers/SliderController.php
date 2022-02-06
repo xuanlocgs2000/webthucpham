@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Slider;
 use Illuminate\Support\Facades\Redirect;
 use Session;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
 
 class SliderController extends Controller
@@ -59,5 +61,17 @@ class SliderController extends Controller
        }
 
 
+    }
+    public function unactive_slide($slide_id){
+        $this->AuthLogin();
+        DB::table('tbl_slider')->where('slider_id',$slide_id)->update(['slider_status'=>0]);
+        Session::put('message','Ẩn thành công');
+        return Redirect::to('manage-slider');  
+    }
+    public function active_slide($slide_id){
+        $this->AuthLogin();
+        DB::table('tbl_slider')->where('slider_id',$slide_id)->update(['slider_status'=>1]);
+        Session::put('message','Hiện thành công');
+        return Redirect::to('manage-slider'); 
     }
 }
