@@ -209,6 +209,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="{{ asset('public/backend/js/jquery.nicescroll.js') }}"></script>
 <script src="{{ asset('public/backend/ckeditor/ckeditor.js') }}"></script>
 <script>
+	$('.order_details').change(function(){
+		var order_status= $(this).val();
+		var orfer_id = $(this).children(":selected").attr("id");
+		var _token = $('input[name="_token"]').val();
+	});
+</script>
+<script>
 	$(document).ready(function(){
 		fetch_delivery();
 		function fetch_delivery(){

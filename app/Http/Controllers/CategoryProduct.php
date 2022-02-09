@@ -122,6 +122,16 @@ class CategoryProduct extends Controller
         
        
     }
+    public function export_csv(){
+        return Excel::download(new ExcelExport , 'product.xlsx');
+    }
+
+    public function import_csv(Request $request){
+        $path = $request->file('file')->getRealPath();
+        Excel::import(new ExcelImport, $path);
+        return back();
+    }
+
 }
 
   

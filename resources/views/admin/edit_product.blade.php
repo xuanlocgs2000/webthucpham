@@ -29,6 +29,10 @@
                             <input value="{{ $pro->product_name }}" type="text" name="product_name" class="form-control" id="exampleInputEmail1" >
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputEmail1">Số lượng </label>
+                            <input value="{{ $pro->product_quantity }}" type="text" name="product_quantity" class="form-control" id="exampleInputEmail1" >
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputEmail1">Giá gốc </label>
                             <input  value="{{ $pro->product_sale }}"  type="text" name="product_sale" class="form-control" id="exampleInputEmail1" >
                         </div>

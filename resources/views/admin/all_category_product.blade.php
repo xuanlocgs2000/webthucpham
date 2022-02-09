@@ -59,12 +59,13 @@
                     <?php
                     if($cate_pro->category_status ==0){
                       ?>
-                      <a href="{{ URL::to('/unactive-category-product/'.$cate_pro->category_id) }}" ><span  class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                      <a href="{{ URL::to('/active-category-product/'.$cate_pro->category_id) }}." ><span  class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                  
                     <?php
                     }
                     else{
                       ?>
-                      <a href="{{ URL::to('/active-category-product/'.$cate_pro->category_id) }}." ><span  class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+                      <a href="{{ URL::to('/unactive-category-product/'.$cate_pro->category_id) }}" ><span  class="fa-thumb-styling fa fa-thumbs-down"></span></a>
 
                     <?php
                     }
@@ -82,6 +83,17 @@
                 @endforeach
               </tbody>
             </table>
+            <form action="{{url('import-csv')}}" method="POST" enctype="multipart/form-data">
+              @csrf
+            <input type="file" name="file" accept=".xlsx"><br>
+           <input type="submit" value="Import Excel" name="import_csv" class="btn btn-warning">
+            </form>
+           <form action="{{url('export-csv')}}" method="POST">
+              @csrf
+           <input type="submit" value="Export Excel" name="export_csv" class="btn btn-success">
+          </form>
+    
+
           </div>
           <footer class="panel-footer">
             <div class="row">

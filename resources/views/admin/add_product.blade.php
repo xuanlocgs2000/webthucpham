@@ -26,6 +26,10 @@
                             <input type="text" name="product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục cha">
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputEmail1">Số lượng </label>
+                            <input type="text" name="product_quantity" class="form-control" id="exampleInputEmail1" placeholder="số lượng">
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputEmail1">Giá gốc </label>
                             <input type="text" name="product_sale" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục cha">
                         </div>

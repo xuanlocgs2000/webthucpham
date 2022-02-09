@@ -74,4 +74,11 @@ class SliderController extends Controller
         Session::put('message','Hiện thành công');
         return Redirect::to('manage-slider'); 
     }
+    public function delete_slide($slide_id){
+        $this->AuthLogin();
+        DB::table('tbl_slider')->where('slider_id',$slide_id)->delete();
+     
+        Session::put('message','Xóa thành công');
+        return Redirect::to('manage-slider');  
+    }
 }
