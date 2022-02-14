@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Session;
+use App\Models\Slider;
 use Illuminate\Support\Facades\Redirect;
 
 
@@ -89,7 +90,7 @@ class CategoryProduct extends Controller
     //---!End function Admin
     //sản phẩm theo dánh mục
     public function show_category_home(Request  $request,$category_id){
-       
+        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
         $cate_product = DB::table('tbl_category_product')
         ->where('category_status','0')->orderby('category_id','asc')->get();
         $brand_product = DB::table('tbl_brand')
@@ -118,10 +119,12 @@ class CategoryProduct extends Controller
         ->with('meta_desc', $meta_desc)
         ->with('meta_keywords',$meta_keywords)
         ->with('meta_title', $meta_title)
-        ->with('url_canonical',$url_canonical);
+        ->with('url_canonical',$url_canonical)
+        ->with('slider',$slider);
+    }
         
        
-    }
+    
     public function export_csv(){
         return Excel::download(new ExcelExport , 'product.xlsx');
     }

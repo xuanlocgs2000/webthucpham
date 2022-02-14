@@ -1,5 +1,6 @@
 @extends('layout')
-@section('content')
+ @section('content')
+
 @foreach($product_details as $key => $value) 
 
 <div class="product-details"><!--product-details-->
@@ -37,26 +38,24 @@
             <h2>{{ $value->product_name }}</h2>
             <p>Mã sản phẩm(ID): {{ $value->product_id }}</p>
             <img src="images/product-details/rating.png" alt="" />
-            <form action="{{ URL::to('/save-cart') }}" method="POST">
-                {{ csrf_field() }}
+            <form action="{{URL::to('/save-cart')}}" method="POST">
+                @csrf
+                <input type="hidden" value="{{$value->product_id}}" class="cart_product_id_{{$value->product_id}}">
+                        <input type="hidden" value="{{$value->product_name}}" class="cart_product_name_{{$value->product_id}}">
+                        <input type="hidden" value="{{$value->product_image}}" class="cart_product_image_{{$value->product_id}}">
+                        <input type="hidden" value="{{$value->product_price}}" class="cart_product_price_{{$value->product_id}}">
+                      
             <span>
                 <h4 class="price-sale" >{{number_format($value->product_sale, 0, ',', '.').' '.'đ' }}</h4>
-                <span>{{number_format($value->product_price, 0, ',', '.').' đ' }}</span>
+                <span>{{number_format($value->product_price,0,',','.').'  đ'}}</span>
                 <label>Số lượng:</label>
-                <input name="qty" type="number" value="1" min="1" max="50" />
-                <input name="productid_hidden" type="hidden" value=" {{ $value->product_id }}"  />
-
-                <button type="submit" class="btn btn-fefault cart">
-                    <i class="fa fa-shopping-cart"></i>
-                    Mua ngay
-                </button>
-                
+                <input name="qty" type="number" min="1" class="cart_product_qty_{{$value->product_id}}"  value="1" />
+                <input name="productid_hidden" type="hidden"  value="{{$value->product_id}}" />
             </span>
-        </form>
-        {{-- <button type="button" class="btn btn-default add-to-cart" name="add-to-cart " 
-                                            data-id_product="{{$value->product_id}}"  >                                                
-                                                Thêm vào giỏ hàng 
-                                            </button> --}}
+             <br>
+            <input type="button" value="Thêm giỏ hàng" class="btn btn-primary btn-sm add-to-cart" data-id_product="{{$value->product_id}}" name="add-to-cart">
+            </form>
+            <br>
                                             
             <p><b>Loại sản phẩm:</b> {{ $value->category_name }}</p>
             <p><b>Tình trạng:</b> Còn hàng</p>

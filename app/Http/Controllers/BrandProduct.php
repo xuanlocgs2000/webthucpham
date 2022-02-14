@@ -6,6 +6,7 @@ use App\Models\Brand;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Session;
+use App\Models\Slider;
 use Illuminate\Support\Facades\Redirect;
 
 
@@ -100,6 +101,8 @@ class BrandProduct extends Controller
     //--!End function admin
     //Hiện sản phẩm theo NSX
     public function show_brand_home(Request $request,$brand_id){
+        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
+
         $cate_product = DB::table('tbl_category_product')
         ->where('category_status','0')->orderby('category_id','asc')->get();
         $brand_product = DB::table('tbl_brand')
@@ -127,7 +130,8 @@ class BrandProduct extends Controller
         ->with('meta_desc', $meta_desc)
         ->with('meta_keywords',$meta_keywords)
         ->with('meta_title', $meta_title)
-        ->with('url_canonical',$url_canonical);
+        ->with('url_canonical',$url_canonical)
+        ->with('slider',$slider);
         
        
     }

@@ -22,15 +22,20 @@
                             {{ csrf_field() }}
                             <div class="form-group">
                             <label for="exampleInputEmail1">Tên danh mục </label>
-                            <input type="text" name="category_product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục cha">
+                            <input type="text" name="category_product_name" class="form-control"
+                            data-validation="length" data-validation-length="min2" data-validation-error-msg="Không được để trống trường này"
+                             id="exampleInputEmail1" placeholder="Tên danh mục cha">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả</label>
-                            <textarea style="resize:none" rows="5" type="text"  name="category_product_desc" class="form-control" id="exampleInputPassword1" placeholder="Mô tả danh mục"></textarea>
+                            <textarea style="resize:none" rows="5" type="text"
+                            data-validation="length" data-validation-length="min2" data-validation-error-msg="Không được để trống trường này"  name="category_product_desc" class="form-control" id="exampleInputPassword1" placeholder="Mô tả danh mục"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Từ khóa</label>
-                            <textarea style="resize:none" rows="5" type="text"  name="category_product_keywords" class="form-control" id="exampleInputPassword1" placeholder="Mô tả danh mục"></textarea>
+                            <textarea style="resize:none" rows="5" type="text"  
+                            data-validation="length" data-validation-length="min2" data-validation-error-msg="Không được để trống trường này"
+                            name="category_product_keywords" class="form-control" id="exampleInputPassword1" placeholder="Mô tả danh mục"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Hiển thị</label>

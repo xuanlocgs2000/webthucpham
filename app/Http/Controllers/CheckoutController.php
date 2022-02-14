@@ -13,6 +13,7 @@ use App\Models\Wards;
 use App\Models\Feeship;
 use App\Models\Shipping;
 use App\Models\Order;
+use App\Models\Slider;
 use App\Models\OrderDetails;
 
 // session_start();
@@ -30,6 +31,7 @@ class CheckoutController extends Controller
     }
 }
     public function login_checkout(Request $request){
+        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
         $meta_desc= "Đăng nhập";
         $meta_keywords = "Đăng nhập";
         $meta_title = "Đăng nhập";
@@ -46,7 +48,7 @@ class CheckoutController extends Controller
         ->with('meta_keywords',$meta_keywords)
         ->with('meta_title', $meta_title)
         ->with('url_canonical',$url_canonical)
-        ;
+        ->with('slider',$slider);
     }
     public function add_customer(Request $request){
         $data = array();
@@ -63,6 +65,8 @@ class CheckoutController extends Controller
 
     }
     public function checkout(Request $request){
+        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
+
         $meta_desc= "Thanh toán";
         $meta_keywords = "Thanh toán";
         $meta_title = "Thanh toán";
@@ -80,7 +84,7 @@ class CheckoutController extends Controller
         ->with('meta_title', $meta_title)
         ->with('url_canonical',$url_canonical)
         ->with('city', $city)
-        ;
+        ->with('slider',$slider);
         
     }
     public function save_checkout_customer(Request $request){

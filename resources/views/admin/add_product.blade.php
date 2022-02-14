@@ -23,19 +23,26 @@
                             
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên sản phẩm </label>
-                            <input type="text" name="product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục cha">
+                            <input type="text" data-validation="length" data-validation-length="min15" 
+                            data-validation-error-msg="Tên phải lớn hơn 15 kí tự" name="product_name"
+                             class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục cha">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Số lượng </label>
-                            <input type="text" name="product_quantity" class="form-control" id="exampleInputEmail1" placeholder="số lượng">
+                            <input type="text" name="product_quantity" data-validation="number" data-validation-error-msg="Nhập số lượng" 
+                            class="form-control" id="exampleInputEmail1" placeholder="số lượng">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Giá gốc </label>
-                            <input type="text" name="product_sale" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục cha">
+                            <input type="text" name="product_sale" class="form-control"
+                            data-validation="number" data-validation-error-msg="Nhập đúng số tiền"
+                             id="exampleInputEmail1" placeholder="Tên danh mục cha">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Giá bán </label>
-                            <input type="text" name="product_price" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục cha">
+                            <input type="text" name="product_price" class="form-control"
+                            data-validation="number" data-validation-error-msg="Nhập đúng số tiền"
+                            id="exampleInputEmail1" placeholder="Tên danh mục cha">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Hình ảnh </label>

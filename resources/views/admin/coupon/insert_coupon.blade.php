@@ -20,15 +20,18 @@
                                     @csrf
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên mã giảm giá</label>
-                                    <input type="text" name="coupon_name" class="form-control" id="exampleInputEmail1" >
+                                    <input type="text" name="coupon_name" class="form-control" 
+                                     data-validation="length" data-validation-length="min2" data-validation-error-msg="Không được để trống trường này" >
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Mã giảm giá</label>
-                                    <input type="text" name="coupon_code" class="form-control" id="exampleInputEmail1" >
+                                    <input type="text" name="coupon_code" class="form-control" 
+                                     data-validation="length" data-validation-length="min6" data-validation-error-msg="Mã ít nhất 6 kí tự" >
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Số lượng mã</label>
-                                      <input type="text" name="coupon_time" class="form-control" id="exampleInputEmail1" >
+                                      <input type="text" name="coupon_time" class="form-control" 
+                                      data-validation="number" data-validation-error-msg="Nhập số lượng" >
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Tính năng mã</label>

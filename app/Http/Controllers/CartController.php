@@ -9,6 +9,7 @@ use Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session as FacadesSession;
 use App\Models\Coupon;
+use App\Models\Slider;
 session_start();
 
 class CartController extends Controller
@@ -32,7 +33,8 @@ class CartController extends Controller
         return Redirect::to('/show-cart');
     }
     public function show_cart(Request $request)
-    {
+    {   
+        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
         $meta_desc= "Giỏ hàng";
         $meta_keywords = "Giỏ hàng";
         $meta_title = "Giỏ hàng";
@@ -48,7 +50,8 @@ class CartController extends Controller
         ->with('meta_desc', $meta_desc)
         ->with('meta_keywords', $meta_keywords)
         ->with('meta_title', $meta_title)
-        ->with('url_canonical', $url_canonical);
+        ->with('url_canonical', $url_canonical)
+        ->with('slider',$slider);
     }
     public function delete_to_cart($rowId)
     {
@@ -115,7 +118,9 @@ class CartController extends Controller
         Session::save();
     }
     public function gio_hang(Request $request)
-    {
+    {   
+        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
+
         $meta_desc= "Giỏ hàng ajax";
         $meta_keywords = "Giỏ hàng ajax";
         $meta_title = "Giỏ hàng ajax";
@@ -131,7 +136,8 @@ class CartController extends Controller
         ->with('meta_desc', $meta_desc)
         ->with('meta_keywords', $meta_keywords)
         ->with('meta_title', $meta_title)
-        ->with('url_canonical', $url_canonical);
+        ->with('url_canonical', $url_canonical)
+        ->with('slider',$slider);
     }
     public function delete_product($session_id)
     {

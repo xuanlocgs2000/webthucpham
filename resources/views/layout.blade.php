@@ -79,7 +79,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="{{URL::to('/trang-chu')}}"><img src="public/frontend/images/home/logo2.png" alt="" width="145" height="39"  /></a>
+                            <a href="{{URL::to('/trang-chu')}}"><img src="{{URL::to('public/frontend/images/home/logo2.png')  }}" alt="" width="145" height="39"  /></a>
                         </div>
                         <div class="btn-group pull-right">
                             <div class="btn-group">
@@ -199,7 +199,8 @@
                             {{ csrf_field() }}
                             <div class="search_box pull-right">
                                 <input type="text" name="keywords_submit" placeholder="Tìm kiếm"/>
-                                <input type="submit" name="search_items" class="btn btn-success btn-sm" value="" style="width:20 height=25" >
+                                <input type="submit" style="margin-top:0;color:#666" name="search_items" width="40px" class="btn btn-primary btn-sm" value="Tìm kiếm">
+                                {{-- <input type="submit" name="search_items" class="btn btn-success btn-sm" value="" style="width:20 height=25" > --}}
                             </div>
                         </form>
                        
@@ -236,7 +237,7 @@
                                     {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
                                 </div>
                                 <div class="col-sm-11">
-                                <img alt="{{ $slide->slider_desc }}" src="public/upload/slider/{{ $slide->slider_image }}" alt="" height="150px" width="100%" class="img img-responsive">
+                                <img alt="{{ $slide->slider_desc }}" src="{{asset('public/upload/slider/'.$slide->slider_image)}}" alt="" height="100px" width="100%" class="img img-responsive">
 
                                     {{-- <img src="public/upload/slider/{{ $slide->slider_image }}" class="girl img-responsive" alt="" /> --}}
                                     {{-- <img src="{{ ('public/frontend/images/home/pricing.png') }}"  class="pricing" alt="" /> --}}
@@ -294,6 +295,9 @@
                                 <div class="panel-heading">
                                     <h4 class="panel-title"><a href="{{ URL::to('/danh-muc-san-pham/'.$cate->category_id) }}">{{ $cate->category_name }}</a></h4>
                                 </div>
+                                {{-- <div class="panel-heading">
+                                    <h4 class="panel-title"><a href="{{URL::to('/danh-muc/'.$cate->slug_category_product)}}">{{$cate->category_name}}</a></h4>
+                                </div> --}}
                             </div>     
                             @endforeach
                                       
@@ -330,11 +334,7 @@
                 
                 <div class="col-sm-9 padding-right">
                     @yield('content')
-                                       
-                    
-                    
-                    
-                    
+               
                 </div>
             </div>
         </div>
@@ -355,7 +355,7 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="public/frontend/images/home/iframe1.png" alt="" />
+                                        <img src="{{ 'public/frontend/images/home/iframe1.png' }}" alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
@@ -370,7 +370,7 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="public/frontend/images/home/iframe2.png" alt="" />
+                                        <img src="{{ 'public/frontend/images/home/iframe2.png' }}" alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
@@ -385,7 +385,7 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="public/frontend/images/home/iframe3.png" alt="" />
+                                        <img src="{{ 'public/frontend/images/home/iframe3.png' }}" alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
@@ -400,7 +400,7 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="public/frontend/images/home/iframe4.png" alt="" />
+                                        <img src="{{ 'public/frontend/images/home/iframe4.png' }}" alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>

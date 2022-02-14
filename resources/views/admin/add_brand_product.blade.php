@@ -31,7 +31,9 @@
                             {{ csrf_field() }}
                             <div class="form-group">
                             <label for="exampleInputEmail1">Tên NSX </label>
-                            <input type="text" name="brand_name" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục cha">
+                            <input type="text" name="brand_name" class="form-control"
+                            data-validation="length" data-validation-length="min2" data-validation-error-msg="Không được để trống trường này"
+                             id="exampleInputEmail1" placeholder="Tên danh mục cha">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả</label>

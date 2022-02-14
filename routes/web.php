@@ -23,6 +23,9 @@ Route::post('/tim-kiem','HomeController@search');
 Route::get('/danh-muc-san-pham/{category_id}','CategoryProduct@show_category_home');
 Route::get('/nha-cung-cap/{brand_id}','BrandProduct@show_brand_home');
 Route::get('/chi-tiet-san-pham/{product_id}','ProductController@details_product');
+// Route::get('/danh-muc/{slug_category_product}','CategoryProduct@show_category_home');
+// Route::get('/nha-cung-cap/{brand_slug}','BrandProduct@show_brand_home');
+// Route::get('/chi-tiet/{product_slug}','ProductController@details_product');
 
 
 //Admin sever
@@ -127,9 +130,12 @@ Route::post('/insert-coupon-code','CouponController@insert_coupon_code');
 
 //quản lí đơn hàng
 Route::get('/print-order/{checkout_code}','OderController@print_order');
-
 Route::get('/manage-order','OderController@manage_order');
 Route::get('/view-order/{order_code}','OderController@view_order');
+Route::post('/update-order-qty','OderController@update_order_qty');
+Route::post('/update-qty','OderController@update_qty');
+
+
 // Route::get('/manage-order','CheckoutController@manage_order');
 // Route::get('/view-order/{orderId}','CheckoutController@view_order');
 

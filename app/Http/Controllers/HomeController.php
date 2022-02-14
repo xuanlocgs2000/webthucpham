@@ -24,8 +24,7 @@ class HomeController extends Controller
         ->where('category_status','0')->orderby('category_id','asc')->get();
         $brand_product = DB::table('tbl_brand')
         ->where('brand_status','0')->orderby('brand_id','asc')->get();
-        $all_product = DB::table('tbl_product')
-        ->where('product_status','1')->orderby('product_id','desc')->limit(6)->get();
+        $all_product = DB::table('tbl_product')->where('product_status','1')->orderby(DB::raw('RAND()'))->paginate(6); 
 
         return view('pages.home')
         ->with('category',$cate_product)
@@ -42,6 +41,8 @@ class HomeController extends Controller
         
     }
     public function search(Request $request){
+        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
+
         $meta_desc= "Tìm kiếm sản phẩm";
         $meta_keywords = "Tìm kiếm sản phẩm";
         $meta_title = "Tìm kiếm sản phẩm";
@@ -62,6 +63,8 @@ class HomeController extends Controller
         ->with('meta_keywords',$meta_keywords)
         ->with('meta_title', $meta_title)
         ->with('url_canonical',$url_canonical)
+        ->with('slider',$slider)
+
         ;       
 
 

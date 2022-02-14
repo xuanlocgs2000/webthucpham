@@ -23,11 +23,15 @@
                             {{ csrf_field() }}
                             <div class="form-group">
                             <label for="exampleInputEmail1">Tên NSX </label>
-                            <input type="text" value="{{ $edit_value->brand_name }}" name="brand_product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục cha">
+                            <input type="text" value="{{ $edit_value->brand_name }}" name="brand_product_name" class="form-control"
+                            data-validation="length" data-validation-length="min2" data-validation-error-msg="Không được để trống trường này"
+                             id="exampleInputEmail1" placeholder="Tên danh mục cha">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả</label>
-                            <textarea style="resize:none" rows="5" type="text"  name="brand_product_desc" class="form-control" id="exampleInputPassword1" >{{ $edit_value->brand_desc }}</textarea>
+                            <textarea style="resize:none" rows="5" type="text"  name="brand_product_desc"
+                            data-validation="length" data-validation-length="min2" data-validation-error-msg="Không được để trống trường này"
+                             class="form-control" id="exampleInputPassword1" >{{ $edit_value->brand_desc }}</textarea>
                         </div>
                         
                         <button type="submit" class="btn btn-info">Cập nhật</button>
