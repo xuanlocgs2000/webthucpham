@@ -142,11 +142,35 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
+                        <span>Sản phẩm</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{ URL::to('/add-product') }}">Thêm mới</a></li>
+						<li><a href="{{ URL::to('/all-product') }}">Quản lí</a></li>
+                        
+                    </ul>
+                </li>
+				<li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
                         <span>Đơn hàng</span>
                     </a>
                     <ul class="sub">
 						<li><a href="{{ URL::to('/manage-order ') }}">Quản lí đơn hàng</a></li>
 						
+                    </ul>
+                </li>
+				<li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Bài viết</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{ URL::to('/add-category-post') }}">Thêm mới danh mục</a></li>
+						<li><a href="{{ URL::to('/all-category-post') }}">Quản lí danh mục</a></li>
+						<li><a href="{{ URL::to('/add-post') }}">Bài viết mới</a></li>
+						<li><a href="{{ URL::to('/all-post') }}">List bài viết</a></li>
+                        
                     </ul>
                 </li>
 				<li class="sub-menu">
@@ -160,17 +184,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 					</ul>
                 </li>
-				<li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-book"></i>
-                        <span>Sản phẩm</span>
-                    </a>
-                    <ul class="sub">
-						<li><a href="{{ URL::to('/add-product') }}">Thêm mới</a></li>
-						<li><a href="{{ URL::to('/all-product') }}">Quản lí</a></li>
-                        
-                    </ul>
-                </li>
+				
 				<li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
@@ -182,6 +196,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 					</ul>
                 </li>
+				
                 
             </ul>            </div>
         <!-- sidebar menu end-->
@@ -399,6 +414,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	CKEDITOR.replace('ckeditor3');
 	CKEDITOR.replace('ckeditor4');
 	CKEDITOR.replace('ckeditor5');
+	CKEDITOR.replace('ckeditor6');
+	CKEDITOR.replace('ckeditor7');
 
 </script>
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->

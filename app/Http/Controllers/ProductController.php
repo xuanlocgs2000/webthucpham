@@ -6,6 +6,7 @@ use App\Http\Requests;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Slider;
+use App\Models\CatePost;
 session_start();
 class ProductController extends Controller
 {
@@ -23,8 +24,15 @@ class ProductController extends Controller
         $this->AuthLogin();
         $cate_product = DB::table('tbl_category_product')->orderby('category_id','desc')->get();
         $brand_product = DB::table('tbl_brand')->orderby('brand_id','desc')->get();
+        $all_product = DB::table('tbl_product')
+        ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
+        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
+        ->orderby('tbl_product.product_id','desc')->get();
         
-        return view('admin.add_product')->with('cate_product',$cate_product)->with('brand_product',$brand_product);
+        return view('admin.add_product')
+        ->with('cate_product',$cate_product)
+        ->with('all_product',$all_product)
+        ->with('brand_product',$brand_product);
 
 
 
@@ -139,6 +147,9 @@ class ProductController extends Controller
     //End admin
     //show deltails
     public function details_product($product_id, Request $request){
+        $category_post= CatePost::orderBy('cate_post_id','DESC')->get();
+
+
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
 
         $cate_product = DB::table('tbl_category_product')
@@ -177,7 +188,9 @@ class ProductController extends Controller
         ->with('meta_keywords',$meta_keywords)
         ->with('meta_title', $meta_title)
         ->with('url_canonical',$url_canonical)
-        ->with('slider',$slider);
+        ->with('slider',$slider)
+        ->with('category_post',$category_post)
+        ;
         
         
 

@@ -6,7 +6,7 @@
 <div class="product-details"><!--product-details-->
     <div class="col-sm-5">
         <div class="view-product">
-            <img src="{{ URL::to('/public/upload/product/'.$value->product_image)}}" alt="" />
+            <img src="{{ URL::to('/public/upload/product/'.$value->product_image)}}"  alt="" />
             <h3>ZOOM</h3>
         </div>
         <div id="similar-product" class="carousel slide" data-ride="carousel">
@@ -43,22 +43,23 @@
                 <input type="hidden" value="{{$value->product_id}}" class="cart_product_id_{{$value->product_id}}">
                         <input type="hidden" value="{{$value->product_name}}" class="cart_product_name_{{$value->product_id}}">
                         <input type="hidden" value="{{$value->product_image}}" class="cart_product_image_{{$value->product_id}}">
+                        <input type="hidden" value="{{$value->product_quantity}}" class="cart_product_quantity_{{$value->product_id}}">
                         <input type="hidden" value="{{$value->product_price}}" class="cart_product_price_{{$value->product_id}}">
                       
             <span>
                 <h4 class="price-sale" >{{number_format($value->product_sale, 0, ',', '.').' '.'đ' }}</h4>
                 <span>{{number_format($value->product_price,0,',','.').'  đ'}}</span>
                 <label>Số lượng:</label>
-                <input name="qty" type="number" min="1" class="cart_product_qty_{{$value->product_id}}"  value="1" />
+                <input name="qty" type="number"   min="1"  class="cart_product_qty_{{$value->product_id}}"  value="1" />
                 <input name="productid_hidden" type="hidden"  value="{{$value->product_id}}" />
             </span>
              <br>
-            <input type="button" value="Thêm giỏ hàng" class="btn btn-primary btn-sm add-to-cart" data-id_product="{{$value->product_id}}" name="add-to-cart">
+            <input type="button" value="Mua ngay" class="btn btn-primary btn-sm add-to-cart" data-id_product="{{$value->product_id}}" name="add-to-cart">
             </form>
             <br>
                                             
-            <p><b>Loại sản phẩm:</b> {{ $value->category_name }}</p>
-            <p><b>Tình trạng:</b> Còn hàng</p>
+            <p><b>Loại sản phẩm:</b> {{ $value->category_name }}</p>           
+            <p><b>Tình trạng:</b> Còn hàng( {{ $value->product_quantity }} sp)</p>
             <p><b>Chứng chỉ :</b> BYT-ATVSTP 2008-2018</p>
             <p><b>Nhà cung cấp:</b> {{ $value->brand_name }}</p>
             <a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>

@@ -48,7 +48,7 @@ class OderController extends Controller
             $coupon_number = 0;
         }
         
-        return view('admin.view_order')->with(compact('order_details', 'customer', 'shipping', 'order_details', 'coupon_condition', 'coupon_number', 'order', 'order_status','slider'));
+        return view('admin.view_order')->with(compact('order_details', 'customer', 'shipping', 'order_details', 'coupon_condition', 'coupon_number', 'order', 'order_status'));
     }
     public function print_order($checkout_code)
     {

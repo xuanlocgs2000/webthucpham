@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\City;
 use App\Models\District;
 use App\Models\Wards;
+use App\Models\Slider;
 use App\Models\Feeship;
 class DeliveryController extends Controller
 {

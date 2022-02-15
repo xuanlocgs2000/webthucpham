@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Session;
 use App\Models\Slider;
+use App\Models\CatePost;
 use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
 
 {
        public function index(Request $request){
+        //catetegory post
+        $category_post= CatePost::orderBy('cate_post_id','DESC')->get();
+
         //slide
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
         //seo
@@ -35,6 +39,7 @@ class HomeController extends Controller
         ->with('meta_title', $meta_title)
         ->with('url_canonical',$url_canonical)
         ->with('slider',$slider)
+        ->with('category_post',$category_post)
         
 
         ;

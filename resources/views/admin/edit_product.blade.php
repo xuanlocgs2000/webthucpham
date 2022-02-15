@@ -55,7 +55,7 @@
                             <textarea style="resize:none" rows="5" type="text"  name="product_content" class="form-control" id="ckeditor4">
                                 {{ $pro->product_content }}</textarea>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="exampleInputPassword1">Danh mục sản phẩm</label>
                             <select name="product_category" class="form-control input-sm m-bot15">
                                 @foreach ( $cate_product as $key=> $cate)  
@@ -65,6 +65,29 @@
                                 <option value="{{ $cate->category_id }}">{{ $cate->category_name }}</option>
                                 @endif
                                 @endforeach                               
+                               
+                            </select>
+                            
+                        </div> --}}
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Danh mục sản phẩm</label>
+                            <select name="product_category" class="form-control input-sm m-bot15">
+                                {{-- @foreach ( $all_product as $key=> $value)  
+
+                                <option selected  value="{{ $value->category_id }}">---{{ $value->category_name }}---</option>
+                                @endforeach --}}
+                                <option value="#">Danh mục sản phẩm</option>
+                                @foreach ( $cate_product as $key=> $val)  
+                                @if($val->category_parent ==0)
+                                <option value="{{ $val->category_id }}">{{ $val->category_name }}</option>
+                                @endif
+                                @foreach ( $cate_product as $key=> $val2)  
+                                @if($val2->category_parent==$val->category_id )
+                                <option selected value="{{ $val2->category_id }}">---{{ $val2->category_name }}---</option>
+                                @endif
+                                @endforeach   
+                                @endforeach                               
+
                                
                             </select>
                             

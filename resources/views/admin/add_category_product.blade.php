@@ -44,6 +44,27 @@
                                 <option value="1">Ẩn</option>
                                
                             </select>
+                            {{-- <div class="form-group">
+                                <label for="exampleInputPassword1">Cấp danh mục</label>
+                                <select name="category_product_parent" class="form-control input-sm m-bot15">
+                                    <option value="0">Cấp 1 </option>
+                                    <option value="1">Cấp 2</option>
+                                   
+                                </select> --}}
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Danh mục sản phẩm</label>
+                                    <select name="category_product_parent" class="form-control input-sm m-bot15">
+                                        <option value="0"> Danh mục cha(loại 1) </option>
+                                        <option value="1"> Danh mục cha(loại 2) </option>
+                                        @foreach ( $category_product as $key=> $cate)  
+        
+                                        <option value="{{ $cate->category_id }}">{{ $cate->category_name }}</option>
+                                        @endforeach                               
+                                       
+                                    </select>
+                                    
+                                </div>
+
                             
                         </div>
                         

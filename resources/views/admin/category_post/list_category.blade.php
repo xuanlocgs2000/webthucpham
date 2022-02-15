@@ -3,7 +3,7 @@
 	<div class="table-agile-info">
         <div class="panel panel-default">
           <div class="panel-heading">
-            Danh mục sản phẩm
+            Danh mục bài viết
           </div>
           <div class="row w3-res-tb">
             <div class="col-sm-5 m-b-xs">
@@ -44,55 +44,33 @@
                       <input type="checkbox"><i></i>
                     </label>
                   </th>
-                  <th>Tên</th>
-                  <th>Loại/thuộc danh mục</th>
+                  <th>Tên danh mục bài viết</th>
+                  <th>Slug</th>
                   <th>Hiển thị</th>
                  
                   <th style="width:30px;"></th>
                 </tr>
               </thead>
               <tbody>
-                @foreach($all_category_product as $key =>$cate_pro)
+                @foreach($category_post as $key =>$cate_post)
                 <tr>
                   <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-                  <td>{{ $cate_pro->category_name }}</td>
-                  <td>
-                    @if($cate_pro->category_parent==0)
+                  <td>{{ $cate_post->cate_post_name }}</td>
+                  <td>{{ $cate_post->cate_post_slug }}</td>
 
-                    <span style="color: green">Danh mục cha(loại 1)</span>
-                    @elseif($cate_pro->category_parent==1)
-
-                    <span style="color: green">Danh mục cha(loại 2)</span>
-                    @elseif($cate_pro->category_parent>1)
-                      @foreach($category_product as $key =>$cate_sub_pro)
-                      
-                      @if($cate_sub_pro->category_id==$cate_pro->category_parent)
-                    <span style="color:blue">{{ $cate_sub_pro->category_name }}</span>
-                    @endif
-                    @endforeach
-                    @endif
-                  </td>
-                  <td><span class="text-ellipsis">
-                    <?php
-                    if($cate_pro->category_status ==0){
-                      ?>
-                      <a href="{{ URL::to('/active-category-product/'.$cate_pro->category_id) }}." ><span  class="fa-thumb-styling fa fa-thumbs-up"></span></a>
-                  
-                    <?php
-                    }
-                    else{
-                      ?>
-                      <a href="{{ URL::to('/unactive-category-product/'.$cate_pro->category_id) }}" ><span  class="fa-thumb-styling fa fa-thumbs-down"></span></a>
-
-                    <?php
-                    }
-                    ?></span></td>
+                    <td>
+                        @if($cate_post->cate_post_status==0)
+                        Hiển thị
+                        @else
+                        Ẩn
+                        @endif
+                    </td>
                  
                  
                   <td>
-                    <a href="{{URL::to ('/edit-category-product/'.$cate_pro->category_id) }}" class="active styling-edit" ui-toggle-class="">
+                    <a href="{{URL::to ('/edit-category-post/'.$cate_post->cate_post_id) }}" class="active styling-edit" ui-toggle-class="">
                       <i class="fa fa-pencil-square-o text-sucsess text-active"></i></a>
-                      <a onclick="return confirm('Bạn chắc chắn muốn xóa mục này?')" href="{{URL::to ('/delete-category-product/'.$cate_pro->category_id) }}" class="active styling-edit" ui-toggle-class="">
+                      <a onclick="return confirm('Bạn chắc chắn muốn xóa mục này?')" href="{{URL::to ('/delete-category-post/'.$cate_post->cate_post_id) }}" class="active styling-edit" ui-toggle-class="">
                       <i class="fa fa-times text-danger text"></i>
                     </a>
                   </td>
@@ -100,17 +78,6 @@
                 @endforeach
               </tbody>
             </table>
-            {{-- <form action="{{url('import-csv')}}" method="POST" enctype="multipart/form-data">
-              @csrf
-            <input type="file" name="file" accept=".xlsx"><br>
-           <input type="submit" value="Import Excel" name="import_csv" class="btn btn-warning">
-            </form>
-           <form action="{{url('export-csv')}}" method="POST">
-              @csrf
-           <input type="submit" value="Export Excel" name="export_csv" class="btn btn-success">
-          </form>
-     --}}
-
           </div>
           <footer class="panel-footer">
             <div class="row">
@@ -120,8 +87,8 @@
               </div>
               <div class="col-sm-7 text-right text-center-xs">                
                 <ul class="pagination pagination-sm m-t-none m-b-none">
-                  {!!$all_category_product->links()!!}
-                 </ul>
+                    {!!$category_post->links()!!}
+                   </ul>
               </div>
             </div>
           </footer>

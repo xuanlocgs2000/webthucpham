@@ -83,6 +83,7 @@ class CartController extends Controller
                     'product_name'=>$data['cart_product_name'],
                     'product_id'=>$data['cart_product_id'],
                     'product_image'=>$data['cart_product_image'],
+                    'product_quantity'=>$data['cart_product_quantity'],
                     'product_qty'=>$data['cart_product_qty'],
                     'product_price'=>$data['cart_product_price'],
     
@@ -109,6 +110,7 @@ class CartController extends Controller
                 'product_name'=>$data['cart_product_name'],
                 'product_id'=>$data['cart_product_id'],
                 'product_image'=>$data['cart_product_image'],
+                'product_quantity'=>$data['cart_product_quantity'],
                 'product_qty'=>$data['cart_product_qty'],
                 'product_price'=>$data['cart_product_price'],
 
@@ -168,17 +170,24 @@ class CartController extends Controller
     {
         $data = $request->all();
         $cart = Session::get('cart');
+
         if ($cart==true) {
+            $message='';
             foreach ($data['cart_qty'] as $key=>$qty) {
                 // echo $key.'<br>';
                 foreach ($cart as $session=>$val) {
-                    if ($val['session_id']==$key) {
+                    if ($val['session_id']==$key && $qty<$cart[$session]['product_quantity']) {
                         $cart[$session]['product_qty']=$qty;
+                        $message.='<p style="color:green">Cập nhật số lượng: '.$cart[$session]['product_name'].' thành công</p>';
+
+                    }elseif($val['session_id']==$key && $qty>$cart[$session]['product_quantity']){
+                        $message.='<p style="color:red">Cập nhật số lượng: '.$cart[$session]['product_name'].' thất bại </p>';
+
                     }
                 }
             }
             Session::put('cart', $cart);
-            return redirect()->back()->with('message', 'Cập nhật giỏ hàng thành công');
+            return redirect()->back()->with('message', $message);
         } else {
             return redirect()->back()->with('message', 'Không thể cập nhật giỏ hàng');
         }

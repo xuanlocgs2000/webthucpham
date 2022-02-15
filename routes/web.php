@@ -79,6 +79,26 @@ Route::post('/insert-slider','SliderController@insert_slider');
 Route::get('/unactive-slide/{slide_id}','SliderController@unactive_slide');
 Route::get('/active-slide/{slide_id}','SliderController@active_slide');
 Route::get('/delete-slide/{slide_id}','SliderController@delete_slide');
+// danh muc bai viet
+Route::get('/add-category-post','CategoryPost@add_category_post');
+Route::get('/all-category-post','CategoryPost@all_category_post');
+Route::post('/save-category-post','CategoryPost@save_category_post');
+Route::post('/update-category-post/{cate_id}','CategoryPost@update_category_post');
+// Route::get('/danh-muc-bai-viet/{cate_post_slug}','CategoryPost@list_view');
+Route::get('/edit-category-post/{cate_post_id}','CategoryPost@edit_category_post');
+Route::get('/delete-category-post/{cate_id}','CategoryPost@delete_category_post');
+//bai viet
+Route::get('/add-post','PostController@add_post');
+Route::get('/all-post','PostController@all_post');
+Route::post('/save-post','PostController@save_post');
+Route::get('/delete-post/{post_id}','PostController@delete_post');
+Route::get('/edit-post/{post_id}','PostController@edit_post');
+Route::post('/update-post/{post_id}','PostController@update_post');
+Route::get('/danh-muc-bai-viet/{post_slug}','PostController@danh_muc_bai_viet');
+Route::get('/bai-viet/{post_slug}','PostController@bai_viet');
+
+
+
 
 
 

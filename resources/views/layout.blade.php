@@ -29,6 +29,8 @@
     <link href="{{asset('public/frontend/css/main.css')}}" rel="stylesheet">
     <link href="{{asset('public/frontend/css/responsive.css')}}" rel="stylesheet">
     <link href="{{asset('public/frontend/css/sweetalert.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="{{asset('public/backend/css/formValidation.min.css')}}" type="text/css"/>
+
 
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -54,8 +56,8 @@
                     <div class="col-sm-6">
                         <div class="contactinfo">
                             <ul class="nav nav-pills">
-                                <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-                                <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                                <li><a href="#"><i class="fa fa-phone"></i> +095 0188 821</a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i> datroifarm35@gmail.com</a></li>
                             </ul>
                         </div>
                     </div>
@@ -99,7 +101,7 @@
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Canadian Dollar</a></li>
+                                    <li><a href="#">VNĐ</a></li>
                                     <li><a href="#">Pound</a></li>
                                 </ul>
                             </div>
@@ -172,12 +174,12 @@
                                 <li><a href="{{URL::to('/trang-chu')}}" class="active">Trang chủ</a></li>
                                 <li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
+                                        <li>
                                         @foreach ($category as $key=>$cate)
                                        
-                                            
+                                        @if($cate->category_parent==0 || $cate->category_parent==1 )   
                                         <li> <a href="{{ URL::to('/danh-muc-san-pham/'.$cate->category_id) }}">{{ $cate->category_name }}</a></li>
-                                            
+                                         @endif   
                                            
                                         @endforeach
                                        
@@ -185,8 +187,13 @@
                                 </li> 
                                 <li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-                                        <li><a href="blog-single.html">Blog Single</a></li>
+                                        @foreach ($category_post as $key=>$listview)
+                                       
+                                            
+                                        <li> <a href="{{ URL::to('/danh-muc-bai-viet/'.$listview->cate_post_slug) }}">{{  $listview->cate_post_name  }}</a></li>
+                                            
+                                           
+                                        @endforeach
                                     </ul>
                                 </li> 
                                 <li><a href="{{ URL::to('/show-cart') }}">Giỏ hàng</a></li>
@@ -268,37 +275,47 @@
                     <div class="left-sidebar">
                         <h2>Danh mục</h2>
                         <div class="panel-group category-products" id="accordian"><!--category-productsr-->
-                            {{-- <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
-                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                            Sportswear
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="sportswear" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul>
-                                            <li><a href="#">Nike </a></li>
-                                            <li><a href="#">Under Armour </a></li>
-                                            <li><a href="#">Adidas </a></li>
-                                            <li><a href="#">Puma</a></li>
-                                            <li><a href="#">ASICS </a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div> --}}
-                       
+                                                   
                             @foreach ($category as $key=>$cate)
                             <div class="panel panel-default">
+                            @if($cate->category_parent==0)
+                               
                                 <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="{{ URL::to('/danh-muc-san-pham/'.$cate->category_id) }}">{{ $cate->category_name }}</a></h4>
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordian" href="#{{ $cate->category_id }}">
+											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                            {{ $cate->category_name }}</a>
+                                    </h4>
                                 </div>
-                                {{-- <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="{{URL::to('/danh-muc/'.$cate->slug_category_product)}}">{{$cate->category_name}}</a></h4>
-                                </div> --}}
-                            </div>     
+                                <div id="{{ $cate->category_id }}" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul>
+                                            @foreach($category as $key =>$cate_sub)
+                                            @if($cate_sub->category_parent==$cate->category_id)
+											<li><a href="{{ URL::to('/danh-muc-san-pham/'.$cate_sub->category_id) }}">{{ $cate_sub->category_name }} </a></li>
+											@endif
+                                            @endforeach
+										</ul>
+									</div>
+								</div>
+                                @elseif($cate->category_parent==1)                               
+                           
+                              <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><a href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a></h4>
+                                </div>
+                              </div>
+                                @endif
+                                
+                         
+                                
+                            </div>
+                             
+                          
+                            
+                            
+                              
+                              
                             @endforeach
                                       
                            
@@ -346,7 +363,7 @@
                 <div class="row">
                     <div class="col-sm-2">
                         <div class="companyinfo">
-                            <h2><span>e</span>-shopper</h2>
+                            <h2><span>DAT</span>TROI FARM</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
                         </div>
                     </div>
@@ -507,6 +524,8 @@
     <script src="{{asset('public/frontend/js/jquery.prettyPhoto.js')}}"></script>
     <script src="{{asset('public/frontend/js/main.js')}}"></script>
     <script src="{{asset('public/frontend/js/sweetalert.min.js')}}"></script>
+<script src="{{asset('public/backend/js/jquery.form-validator.min.js')}}"></script>
+    
 
     {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
     <div id="fb-root"></div>
@@ -521,15 +540,21 @@
            var cart_product_name =$('.cart_product_name_'+id).val();
            var cart_product_image =$('.cart_product_image_'+id).val();
            var cart_product_price =$('.cart_product_price_'+id).val();
+           var cart_product_quantity =$('.cart_product_quantity_'+id).val();
            var cart_product_qty =$('.cart_product_qty_'+id).val();
            var _token = $('input[name="_token"]').val();
                     //   alert(cart_product_qty );
+            if(parseInt(cart_product_qty)>parseInt(cart_product_quantity)){
+                alert('Bạn chọn quá số sản phẩm có sẵn' + cart_product_quantity);
+            }
+            else{
+
            $.ajax({
             url: '{{url('/add-cart-ajax')}}',
                     method: 'POST',
                     data:{cart_product_id:cart_product_id,cart_product_name:cart_product_name,
                         cart_product_image:cart_product_image,cart_product_price:cart_product_price,
-                        cart_product_qty:cart_product_qty,_token:_token},
+                        cart_product_qty:cart_product_qty,cart_product_quantity:cart_product_quantity,_token:_token},
                         success:function(data){
                             
                             swal({
@@ -548,7 +573,7 @@
 
                         }
            });
-     
+        }
        });
     });
 </script>
@@ -559,10 +584,14 @@
            var cart_product_id =$('.cart_product_id_'+id).val();
            var cart_product_name =$('.cart_product_name_'+id).val();
            var cart_product_image =$('.cart_product_image_'+id).val();
+           var cart_product_quantity =$('.cart_product_quantity_'+id).val();
            var cart_product_price =$('.cart_product_price_'+id).val();
            var cart_product_qty =$('.cart_product_qty_'+id).val();
            var _token = $('input[name="_token"]').val();
                     //   alert(cart_product_qty );
+           
+
+            
            $.ajax({
             url: '{{url('/add-cart-ajax')}}',
                     method: 'POST',
@@ -587,6 +616,7 @@
 
                         }
            });
+           }
      
        });
     });

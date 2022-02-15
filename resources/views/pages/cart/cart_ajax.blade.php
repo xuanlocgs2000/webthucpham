@@ -10,11 +10,12 @@
         </div>
 		@if(session()->has('message'))
                     <div class="alert alert-success">
-                        {{ session()->get('message') }}
+                        {!! session()->get('message') !!}
                     </div>
                 @elseif(session()->has('error'))
                      <div class="alert alert-danger">
-                        {{ session()->get('error') }}
+                        {!! session()->get('error') !!}
+                        
                     </div>
                 @endif
         <div class="table-responsive cart_info">
@@ -25,8 +26,8 @@
                     <tr class="cart_menu">
                         <td class="image">Hình ảnh</td>
                         <td class="description">Tên sản phẩm</td>
-                        <td class="price">giá</td>
-                        <td class="quantity">số lượng</td>
+                        <td class="price">Giá</td>
+                        <td class="quantity">Số lượng</td>
                         <td class="total">Thành tiền</td>
                         <td></td>
                     </tr>
@@ -82,7 +83,7 @@
                                 
 							</td>
 							<td>
-								<a class="btn btn-default check_out" href="{{ url('/del-all-product') }}">Xóa tất cả sản phẩm</a>	
+								<a onclick="return confirm('Bạn chắc chắn xóa hết sản phẩm trong giỏ hàng?')" class="btn btn-default check_out" href="{{ url('/del-all-product') }}">Xóa tất cả sản phẩm</a>	
 							</td>
                             <td>@if(Session::get('coupon'))
                                 <a class="btn btn-default check_out" href="{{ url('/unset-coupon') }}">Không áp mã</a>	
@@ -115,7 +116,7 @@
                                     
                                         @foreach (Session::get('coupon') as $key=>$cou)
                                             @if ($cou['coupon_condition']==1)
-                                            Mã giảm giá: {{ $cou['coupon_number'] }} %
+                                            Áp mã: {{ $cou['coupon_number'] }} %
                                             <p>
                                                 @php
                                                     $total_coupon = ($total*$cou['coupon_number'])/100;

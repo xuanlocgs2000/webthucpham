@@ -5,6 +5,7 @@ use App\Models\Coupon;
 use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\Slider;
 use PHPUnit\Framework\Constraint\Count;
 
 class CouponController extends Controller

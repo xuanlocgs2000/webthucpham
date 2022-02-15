@@ -38,6 +38,27 @@
                             <textarea style="resize:none" rows="5" type="text"  name="category_product_keywords"
                             data-validation="length" data-validation-length="min2" data-validation-error-msg="Không được để trống trường này" class="form-control" id="exampleInputPassword1" placeholder="từ khóa">{{ $edit_value->meta_keywords }}</textarea>
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Danh mục sản phẩm</label>
+                            <select name="category_product_parent" class="form-control input-sm m-bot15">
+                                @if($edit_value->category_parent ==0)
+                                        <option value="0"> Danh mục cha(loại 1) </option>
+                                @elseif($edit_value->category_parent ==1)
+                                        <option selected value="1"> Danh mục cha(loại 2) </option>
+                                
+                                @endif
+                                @if($edit_value->category_parent !=0)
+                                @foreach ( $category_product as $key=> $cate)  
+                                @if($cate->category_parent==0)
+                                <option value="{{ $cate->category_id }}">{{ $cate->category_name }}</option>
+                                @endif
+                                
+                                @endforeach  
+                                @endif                             
+                               
+                            </select>
+                            
+                        </div>
                         
                         <button type="submit" class="btn btn-info">Cập nhật</button>
                     </form>
