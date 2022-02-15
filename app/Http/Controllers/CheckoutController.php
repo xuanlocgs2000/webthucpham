@@ -15,6 +15,7 @@ use App\Models\Shipping;
 use App\Models\Order;
 use App\Models\Slider;
 use App\Models\OrderDetails;
+use App\Models\CatePost;
 
 // session_start();
 
@@ -31,6 +32,7 @@ class CheckoutController extends Controller
     }
 }
     public function login_checkout(Request $request){
+        $category_post= CatePost::orderBy('cate_post_id','DESC')->get();
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
         $meta_desc= "Đăng nhập";
         $meta_keywords = "Đăng nhập";
@@ -48,7 +50,8 @@ class CheckoutController extends Controller
         ->with('meta_keywords',$meta_keywords)
         ->with('meta_title', $meta_title)
         ->with('url_canonical',$url_canonical)
-        ->with('slider',$slider);
+        ->with('slider',$slider)
+        ->with('category_post',$category_post);
     }
     public function add_customer(Request $request){
         $data = array();
@@ -65,6 +68,9 @@ class CheckoutController extends Controller
 
     }
     public function checkout(Request $request){
+
+        $category_post= CatePost::orderBy('cate_post_id','DESC')->get();
+
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
 
         $meta_desc= "Thanh toán";
@@ -84,7 +90,8 @@ class CheckoutController extends Controller
         ->with('meta_title', $meta_title)
         ->with('url_canonical',$url_canonical)
         ->with('city', $city)
-        ->with('slider',$slider);
+        ->with('slider',$slider)
+        ->with('category_post',$category_post);
         
     }
     public function save_checkout_customer(Request $request){

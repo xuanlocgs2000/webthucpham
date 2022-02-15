@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Slider;
+use App\Models\CatePost;
 
 use Illuminate\Support\Facades\Redirect;
 
@@ -110,6 +111,7 @@ class CategoryProduct extends Controller
     //---!End function Admin
     //sản phẩm theo dánh mục
     public function show_category_home(Request  $request,$category_id){
+        $category_post= CatePost::orderBy('cate_post_id','DESC')->get();
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
         $cate_product = DB::table('tbl_category_product')
         ->where('category_status','0')->orderby('category_id','asc')->get();
@@ -140,7 +142,8 @@ class CategoryProduct extends Controller
         ->with('meta_keywords',$meta_keywords)
         ->with('meta_title', $meta_title)
         ->with('url_canonical',$url_canonical)
-        ->with('slider',$slider);
+        ->with('slider',$slider)
+        ->with('category_post',$category_post);
     }
         
        
