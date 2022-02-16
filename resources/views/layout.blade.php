@@ -29,6 +29,9 @@
     <link href="{{asset('public/frontend/css/main.css')}}" rel="stylesheet">
     <link href="{{asset('public/frontend/css/responsive.css')}}" rel="stylesheet">
     <link href="{{asset('public/frontend/css/sweetalert.css')}}" rel="stylesheet">
+    <link href="{{asset('public/frontend/css/lightgallery.min.css')}}" rel="stylesheet">
+    <link href="{{asset('public/frontend/css/lightslider.min.css')}}" rel="stylesheet">
+    <link href="{{asset('public/frontend/css/prettify.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="{{asset('public/backend/css/formValidation.min.css')}}" type="text/css"/>
 
 
@@ -524,6 +527,9 @@
     <script src="{{asset('public/frontend/js/jquery.prettyPhoto.js')}}"></script>
     <script src="{{asset('public/frontend/js/main.js')}}"></script>
     <script src="{{asset('public/frontend/js/sweetalert.min.js')}}"></script>
+    <script src="{{asset('public/frontend/js/lightgallery-all.min.js')}}"></script>
+    <script src="{{asset('public/frontend/js/lightslider.js')}}"></script>
+    <script src="{{asset('public/frontend/js/prettify.js')}}"></script>
 <script src="{{asset('public/backend/js/jquery.form-validator.min.js')}}"></script>
     
 
@@ -532,6 +538,17 @@
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="3tqTUgTJ"></script>
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="nN3lZzaq"></script>
+<script type="text/javascript">
+    $('#lightSlider').lightSlider({
+    gallery: true,
+    item: 1,
+    loop:true,
+    slideMargin: 0,
+    thumbItem: 3
+    
+    
+});
+</script>
 <script type="text/javascript">
     $(document).ready(function(){
        $('.add-to-cart').click(function(){

@@ -28,7 +28,7 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 100%;
     overflow-x: hidden;
-    background: url(../images/bg.jpg) no-repeat 0px 0px;
+    background: url(../images/anh-phong-canh-troi-dat-dep.jpg) no-repeat 0px 0px;
     background-size: cover;
 }
 
@@ -282,7 +282,7 @@ ul.sidebar-menu li a.active i {
 }
 
 .footer {
-    background: #d19a98;
+    background: rgb(49, 103, 153);
     padding: 20px;
 }
 
@@ -303,7 +303,7 @@ ul.sidebar-menu li a.active i {
     left: 0;
     right: 0;
     z-index: 1002;
-    background: rgb(240, 188, 180);
+    background: rgb(49, 103, 153);
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     -o-transition: all .3s ease-in-out;
@@ -327,7 +327,7 @@ ul.sidebar-menu li a.active i {
 }
 
 .brand {
-    background: #8b5c7e;
+    background: #291244;
     float: left;
     width: 240px;
     height: 80px;
