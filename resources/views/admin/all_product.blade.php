@@ -5,7 +5,7 @@
           <div class="panel-heading">
             Danh mục sản phẩm
           </div>
-          <div class="row w3-res-tb">
+          {{-- <div class="row w3-res-tb">
             <div class="col-sm-5 m-b-xs">
               <select class="input-sm form-control w-sm inline v-middle">
                 <option value="0">Bulk action</option>
@@ -25,7 +25,7 @@
                 </span>
               </div>
             </div>
-          </div>
+          </div> --}}
           <div class="table-responsive">
             @if(session()->has('message'))
                     <div class="alert alert-success">
@@ -36,17 +36,18 @@
                         {{ session()->get('error') }}
                     </div>
                 @endif
-            <table class="table table-striped b-t b-light">
+            <table class="table table-striped b-t b-light" id="myTable">
               <thead>
                 <tr>
-                  <th style="width:20px;">
+                  {{-- <th style="width:20px;">
                     <label class="i-checks m-b-none">
                       <input type="checkbox"><i></i>
                     </label>
-                  </th>
+                  </th> --}}
                   <th>Tên sản phẩm</th>
                   <th>Số lượng</th>
                   <th>Hình ảnh</th>
+                  <th>Ảnh chi tiết</th>
                   <th>Danh mục</th>
                   <th>NSX</th>
                   <th>Giá bán</th>
@@ -58,9 +59,10 @@
               <tbody>
                 @foreach($all_product as $key =>$pro)
                 <tr>
-                  <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+                  {{-- <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td> --}}
                   <td>{{ $pro->product_name }}</td>
                   <td>{{ $pro->product_quantity }}</td>
+                  <td> <a href="{{ url('/add-gallery/'.$pro->product_id) }}">Chi tiết sản phẩm</a></td>
                   <td><img src="public/upload/product/{{ $pro->product_image }}" alt="" height="60" width="100"></td>
                   <td>{{ $pro->category_name}}</td>
                   <td>{{ $pro->brand_name }}</td>
@@ -73,12 +75,13 @@
                     <?php
                     if($pro->product_status ==1){
                       ?>
-                      <a href="{{ URL::to('/unactive-product/'.$pro->product_id) }}" ><span  class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                      <a href="{{ URL::to('/unactive-product/'.$pro->product_id) }}" ><span  class="">Yes</span></a>
                     <?php
                     }
+                    //fa-thumb-styling fa fa-thumbs-down
                     else{
                       ?>
-                      <a href="{{ URL::to('/active-product/'.$pro->product_id) }}." ><span  class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+                      <a href="{{ URL::to('/active-product/'.$pro->product_id) }}." ><span style="color: brown" class="">No</span></a>
 
                     <?php
                     }
@@ -97,7 +100,7 @@
               </tbody>
             </table>
           </div>
-          <footer class="panel-footer">
+          {{-- <footer class="panel-footer">
             <div class="row">
               
               <div class="col-sm-5 text-center">
@@ -105,16 +108,11 @@
               </div>
               <div class="col-sm-7 text-right text-center-xs">                
                 <ul class="pagination pagination-sm m-t-none m-b-none">
-                  <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-                  <li><a href="">1</a></li>
-                  <li><a href="">2</a></li>
-                  <li><a href="">3</a></li>
-                  <li><a href="">4</a></li>
-                  <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-                </ul>
+                  {!!$all_product->links()!!}
+                 </ul>
               </div>
             </div>
-          </footer>
+          </footer> --}}
         </div>
       </div>
       @endsection

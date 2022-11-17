@@ -134,7 +134,7 @@ class BrandProduct extends Controller
         ->with('meta_title', $meta_title)
         ->with('url_canonical',$url_canonical)
         ->with('slider',$slider)
-        >with('category_post',$category_post);
+        ->with('category_post',$category_post);
         
        
     }

@@ -39,7 +39,8 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->       
-    <link rel="shortcut icon" href="public/frontend/images/ico/favicon.ico">
+    <link rel="shortcut icon " type="image/jpg" href="{{ asset('public/frontend/images/home/logo5.png') }}">
+
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/frontend/images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="public/frontend/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="public/frontend/images/ico/apple-touch-icon-72-precomposed.png">
@@ -100,7 +101,7 @@
                             
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                    DOLLAR
+                                   VNĐ
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
@@ -199,21 +200,38 @@
                                         @endforeach
                                     </ul>
                                 </li> 
-                                <li><a href="{{ URL::to('/show-cart') }}">Giỏ hàng</a></li>
+                                <li><a href="{{ URL::to('/gio-hang ') }}">Giỏ hàng</a></li>
                                 <li><a href="contact-us.html">Liên hệ</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-5">
-                        <form action="{{URL::to('/tim-kiem')  }}" method="POST">
+                    {{-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/> --}}
+                    <div class="col-sm-20">
+                        {{-- <form action="{{URL::to('/tim-kiem')  }}" autocomplete="off" method="POST">
                             {{ csrf_field() }}
-                            <div class="search_box pull-right">
-                                <input type="text" name="keywords_submit" placeholder="Tìm kiếm"/>
+                            <div class="search_box">
+                                <input type="text" style="width:80%" name="keywords_submit" id="keywords" placeholder="Tìm kiếm"/>
+                                <div id="search_ajax"></div>
                                 <input type="submit" style="margin-top:0;color:#666" name="search_items" width="40px" class="btn btn-primary btn-sm" value="Tìm kiếm">
-                                {{-- <input type="submit" name="search_items" class="btn btn-success btn-sm" value="" style="width:20 height=25" > --}}
+                                
                             </div>
-                        </form>
-                       
+                        </form> --}}
+                        <form action="{{URL::to('/tim-kiem') }}" autocomplete="off" method="POST"> 
+                            {{ csrf_field() }}
+                            <div class="row">
+                              <div class="col-xs-6 col-md-4">
+                                <div class="input-group">
+                                  <input type="text" class="form-control" placeholder="Search" name="keywords_submit" id="keywords"/>
+                                  <div id="search_ajax"></div>
+                                  <div class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit">
+                                      <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
                     </div>
                 </div>
             </div>
@@ -309,16 +327,9 @@
                                 </div>
                               </div>
                                 @endif
-                                
-                         
-                                
+                           
                             </div>
-                             
-                          
-                            
-                            
-                              
-                              
+                         
                             @endforeach
                                       
                            
@@ -330,7 +341,7 @@
                             <div class="brands-name">
                                 <ul class="nav nav-pills nav-stacked">
                                     @foreach ($brand as $key=>$brand)
-                                    <li><a href="{{ URL::to('/nha-cung-cap/'.$brand->brand_id) }}"> <span class="pull-right">(50)</span>{{ $brand->brand_name }}</a></li>
+                                    <li><a href="{{ URL::to('/nha-cung-cap/'.$brand->brand_id) }}"> <span class="pull-right"></span>{{ $brand->brand_name }}</a></li>
                                     @endforeach
                                 </ul>
 
@@ -367,10 +378,10 @@
                     <div class="col-sm-2">
                         <div class="companyinfo">
                             <h2><span>DAT</span>TROI FARM</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+                            <p>Công ty TNHH MTV DATTROIFARM -37/17/NB/TB/Hà Nội</p>
                         </div>
                     </div>
-                    <div class="col-sm-7">
+                    {{-- <div class="col-sm-7">
                         <div class="col-sm-3">
                             <div class="video-gallery text-center">
                                 <a href="#">
@@ -414,9 +425,9 @@
                                 <p>Circle of Hands</p>
                                 <h2>24 DEC 2014</h2>
                             </div>
-                        </div>
+                        </div> --}}
                         
-                        <div class="col-sm-3">
+                        {{-- <div class="col-sm-3">
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
@@ -429,7 +440,7 @@
                                 <p>Circle of Hands</p>
                                 <h2>24 DEC 2014</h2>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="col-sm-3">
                         <div class="address">
@@ -460,11 +471,11 @@
                         <div class="single-widget">
                             <h2>Quock Shop</h2>
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">T-Shirt</a></li>
-                                <li><a href="#">Mens</a></li>
-                                <li><a href="#">Womens</a></li>
-                                <li><a href="#">Gift Cards</a></li>
-                                <li><a href="#">Shoes</a></li>
+                                <li><a href="#">Thực phẩm</a></li>
+                                <li><a href="#">Hoa quả</a></li>
+                                <li><a href="#">Đồ uống </a></li>
+                                <li><a href="#">Hải sản</a></li>
+                                <li><a href="#">Đồ hộp</a></li>
                             </ul>
                         </div>
                     </div>
@@ -510,7 +521,7 @@
         <div class="footer-bottom">
             <div class="container">
                 <div class="row">
-                    <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
+                    <p class="pull-left">Copyright © 2021 DATTROI FARM KMA. All rights reserved.</p>
                     <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
                 </div>
             </div>
@@ -538,6 +549,133 @@
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="3tqTUgTJ"></script>
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="nN3lZzaq"></script>
+<script>
+    function remove_background(product_id){
+        for(var count = 1; count<=5; count++){
+            $('#'+product_id+'-'+count).css('color','#ccc');
+
+        }
+    }
+    $(document).on('mouseenter','.rating',function(){
+        var index = $(this).data("index");
+        var product_id = $(this).data("product_id");
+        remove_background(product_id);
+        for(var count = 1; count<=index; count++){
+            $('#'+product_id+'-'+count).css('color','#fcc00');
+
+        }
+    });
+    $(document).on('mouseleave','.rating',function(){
+        var index = $(this).data("index");
+        var product_id = $(this).data("product_id");
+        remove_background(product_id);
+        for(var count = 1; count<=rating; count++){
+            $('#'+product_id+'-'+count).css('color','#fcc00');
+
+        }
+    });
+    $(document).on('click','.rating',function(){
+        var index = $(this).data("index");
+        var product_id = $(this).data("product_id");
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+                url:"{{ url('/insert-rating') }}",
+                method:"POST",
+                data:{index:index,product_id:product_id,_token:_token},
+                success:function(data){                 
+                    if(data == 'done'){
+                        alert("Bạn đã đánh giá "+index+" sao cho sản phẩm");
+                    }
+                    else{
+                        alert("Không thể đánh giá");
+                    }
+                }
+            });
+    });
+
+</script>
+
+<script>
+   $(document).ready(function(){
+        $('#sort').on('change',function(){
+            var url= $(this).val();
+            if(url){
+                window.location = url;
+            }
+            return false;
+
+        });
+
+   }); 
+
+</script>
+
+<script>
+    $(document).ready(function(){
+        load_comment();
+        
+        function load_comment(){
+             var product_id= $('.comment_product_id').val();
+             var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url:"{{ url('/load-comment') }}",
+                method:"POST",
+                data:{product_id:product_id,_token:_token},
+                success:function(data){                 
+                    $('#comment_show').html(data);
+                }
+            });
+        }
+        $('.send-comment').click(function(){
+            var product_id= $('.comment_product_id').val();
+             var _token = $('input[name="_token"]').val();
+             var comment_name = $('.comment_name').val();
+             var comment_content = $('.comment_content').val();
+             $.ajax({
+                url:"{{ url('/send-comment') }}",
+                method:"POST",
+                data:{product_id:product_id,comment_name:comment_name,comment_content:comment_content,_token:_token},
+                success:function(data){ 
+                    
+                    $('#notify_comment').html('<span class="text text-success">Cảm ơn bạn đã góp ý về sản phẩm của chúng tôi</span> ') ;           
+                    load_comment();
+                    $('#notify_comment').fadeOut(4000);
+                    $('.comment_name').val('');
+                    $('.comment_content').val('');
+                }
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+    $('#keywords').keyup(function(){
+        var query = $(this).val();
+        if(query != ''){
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url:"{{ url('/autocomplete-ajax') }}",
+                method:"POST",
+                data:{query:query,_token:_token},
+                success:function(data){
+                    $('#search_ajax').fadeIn();//đổ kq
+                    $('#search_ajax').html(data);
+                }
+            });
+
+        }
+        else{
+            $('#search_ajax').fadeOut();
+        }
+
+    });
+    $(document).on('click','.li_search_ajax',function(){
+        $('#keywords').val($(this).text());
+        $('#search_ajax').fadeOut();
+
+    });
+
+</script>
+
 <script type="text/javascript">
     $('#lightSlider').lightSlider({
     gallery: true,

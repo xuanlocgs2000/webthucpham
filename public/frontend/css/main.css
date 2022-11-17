@@ -936,10 +936,10 @@ h2.title {
 }
 
 .add-to-cart {
-    background: #F5F5ED;
+    background: #20bf6b;
     border: 0 none;
-    border-radius: 0;
-    color: #696763;
+    border-radius: 2;
+    color: #FFF;
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
     margin-bottom: 5px;
@@ -948,7 +948,7 @@ h2.title {
 .add-to-cart:hover {
     background: #FE980F;
     border: 0 none;
-    border-radius: 0;
+    border-radius: 2;
     color: #FFFFFF;
 }
 
@@ -991,8 +991,8 @@ h2.title {
 }
 
 .category-tab ul {
-    background: #40403E;
-    border-bottom: 1px solid #FE980F;
+    background: #6ab04c;
+    border-bottom: 1px solid #6ab04c;
     list-style: none outside none;
     margin: 0 0 30px;
     padding: 0;
@@ -1002,7 +1002,7 @@ h2.title {
 .category-tab ul li a {
     border: 0 none;
     border-radius: 0;
-    color: #B3AFA8;
+    color: #fff;
     display: block;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
@@ -1371,9 +1371,9 @@ h2.title {
 }
 
 #reviews button {
-    background: #FE980F;
+    background: #0ca35d;
     border: 0 none;
-    border-radius: 0;
+    border-radius: 1.5;
     color: #FFFFFF;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
@@ -2320,7 +2320,7 @@ textarea {
 }
 
 .btn.btn-primary {
-    background: #FE980F;
+    background: #2ecc71;
     border: 0 none;
     border-radius: 0;
     margin-top: 16px;

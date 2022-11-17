@@ -5,7 +5,7 @@
           <div class="panel-heading">
             Bài viết
           </div>
-          <div class="row w3-res-tb">
+          {{-- <div class="row w3-res-tb">
             <div class="col-sm-5 m-b-xs">
               <select class="input-sm form-control w-sm inline v-middle">
                 <option value="0">Bulk action</option>
@@ -25,7 +25,7 @@
                 </span>
               </div>
             </div>
-          </div>
+          </div> --}}
           <div class="table-responsive">
             @if(session()->has('message'))
                     <div class="alert alert-success">
@@ -36,14 +36,10 @@
                         {{ session()->get('error') }}
                     </div>
                 @endif
-            <table class="table table-striped b-t b-light">
+            <table class="table table-striped b-t b-light" id="myTable">
               <thead>
                 <tr>
-                  <th style="width:20px;">
-                    <label class="i-checks m-b-none">
-                      <input type="checkbox"><i></i>
-                    </label>
-                  </th>
+                 
                   <th>Tên bài viết</th>
                   <th>Hình ảnh</th>
                   <th>Slug</th>
@@ -58,7 +54,7 @@
               <tbody>
                 @foreach($all_post as $key =>$post)
                 <tr>
-                  <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+                  {{-- <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td> --}}
                   <td>{{ $post->post_title }}</td>
                   <td><img src="{{asset('public/upload/post/'.$post->post_image ) }}" alt="" height="60" width="100"></td>
                   <td>{{ $post->post_slug }}</td>
@@ -87,7 +83,7 @@
               </tbody>
             </table>
           </div>
-          <footer class="panel-footer">
+          {{-- <footer class="panel-footer">
             <div class="row">
               
               <div class="col-sm-5 text-center">
@@ -100,6 +96,6 @@
               </div>
             </div>
           </footer>
-        </div>
+        </div> --}}
       </div>
       @endsection

@@ -3,11 +3,31 @@
 @section('content')
 <div class="features_items"><!--features_items-->
     
-       <div class="fb-like" data-href="{{$url_canonical}}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>
+       {{-- <div class="fb-like" data-href="{{$url_canonical}}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div> --}}
                         @foreach ($category_name as $key=>$name)
                         <h2 class="title text-center">{{ $name->category_name }}</h2>
 
                         @endforeach
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="amount">Sắp xếp theo</label>
+                                <form action="">
+                                    @csrf
+                                    <select name="sort " id="sort" class="form-control">
+                                        <option value="{{ Request::url() }}?sort_by=none">--Lọc--</option>
+                                        <option value="{{ Request::url() }}?sort_by=tang_dan">--giá tăng dần--</option>
+                                        <option value="{{ Request::url() }}?sort_by=giam_dan">--giá giảm dần--</option>
+                                        <option value="{{ Request::url() }}?sort_by=kytu_az">A đến Z</option>
+                                        <option value="{{ Request::url() }}?sort_by=kytu_za">Z đến A</option>
+
+                                    </select>
+
+                                </form>
+
+
+                            </div>
+                        </div>
+                        <p></p>
                        @foreach ($category_by_id as $key=>$product)                           
                         <a href="{{ URL::to('/chi-tiet-san-pham/'.$product->product_id) }}">
                        <div class="col-sm-4">
@@ -22,22 +42,24 @@
                                        </div>
                                      
                                </div>
-                               <div class="choose">
+                               {{-- <div class="choose">
                                    <ul class="nav nav-pills nav-justified">
                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
                                    </ul>
-                               </div>
+                               </div> --}}
                            </div>
                        </div>  
                     </a>                      
                        @endforeach
                        
                    </div><!--features_items-->
-                   <div class="fb-share-button" data-href="http://localhost:81/webthucpham"
+                   {{-- <div class="fb-share-button" data-href="http://localhost:81/webthucpham"
     data-layout="button_count" data-size="small"><a target="_blank"
      href="https://www.facebook.com/sharer/sharer.php?u={{$url_canonical}}&amp;src=sdkpreparse"
-      class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
-      <div class="fb-comments" data-href="{{$url_canonical}}" data-width="" data-numposts="10"></div>
-                   
+      class="fb-xfbml-parse-ignore">Chia sẻ</a></div> --}}
+      {{-- <div class="fb-comments" data-href="{{$url_canonical}}" data-width="" data-numposts="10"></div> --}}
+      <ul class="pagination pagination-sm m-t-none m-b-none">
+        {!!$category_by_id->links()!!}
+       </ul>
 @endsection

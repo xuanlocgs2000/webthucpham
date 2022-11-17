@@ -23,8 +23,8 @@
                             
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên sản phẩm </label>
-                            <input type="text" data-validation="length" data-validation-length="min15" 
-                            data-validation-error-msg="Tên phải lớn hơn 15 kí tự" name="product_name"
+                            <input type="text" data-validation="length" data-validation-length="min10" 
+                            data-validation-error-msg="Tên phải lớn hơn 10 kí tự" name="product_name"
                              class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục cha">
                         </div>
                         <div class="form-group">
@@ -75,10 +75,13 @@
 
                                 <option selected  value="{{ $value->category_id }}">---{{ $value->category_name }}---</option>
                                 @endforeach --}}
-                                <option value="#">Danh mục sản phẩm</option>
-                                @foreach ( $cate_product as $key=> $val)  
-                                @if($val->category_parent ==0)
+                                <option  value="#">Danh mục sản phẩm</option>
+                                @foreach ( $cate_product as $key=> $val) 
+                                @if($val->category_parent ==1)
                                 <option value="{{ $val->category_id }}">{{ $val->category_name }}</option>
+                                @endif 
+                                @if($val->category_parent ==0)
+                                <option disabled value="{{ $val->category_id }}">{{ $val->category_name }}</option>
                                 @endif
                                 @foreach ( $cate_product as $key=> $val2)  
                                 @if($val2->category_parent==$val->category_id )

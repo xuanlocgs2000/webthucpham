@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Mail;
 use Session;
 use App\Models\Slider;
 use App\Models\CatePost;
+use App\Models\Product;
 use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
@@ -46,6 +47,8 @@ class HomeController extends Controller
         
     }
     public function search(Request $request){
+        $category_post= CatePost::orderBy('cate_post_id','DESC')->get();
+
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
 
         $meta_desc= "Tìm kiếm sản phẩm";
@@ -69,6 +72,8 @@ class HomeController extends Controller
         ->with('meta_title', $meta_title)
         ->with('url_canonical',$url_canonical)
         ->with('slider',$slider)
+        ->with('category_post',$category_post)
+
 
         ;       
 
@@ -88,6 +93,23 @@ class HomeController extends Controller
          });
          return redirect('/')->with('message','');
          //--send mail
+
+    }
+    public function autocomplete_ajax(Request $request){
+        $data = $request->all();
+        if($data['query']){
+            $product = Product::where('product_status',1)->where('product_name','LIKE','%'.$data['query'].'%')->get();
+            $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
+            foreach($product as $key=>$val){
+                $output .=' 
+                <li class="li_search_ajax"><a href="#">'.$val->product_name.'</a></li>
+                ';
+
+            }
+            
+            $output .= '</ul>';
+            echo $output;
+        }
 
     }
 }

@@ -11,6 +11,7 @@ use App\Models\Customer;
 use App\Models\Coupon;
 use App\Models\Product;
 use App\Models\Slider;
+use App\Models\CatePost;
 
 use PDF;
 
@@ -23,6 +24,7 @@ class OderController extends Controller
     }
     public function view_order($order_code)
     {   
+        $category_post= CatePost::orderBy('cate_post_id','DESC')->get();
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
         $order_details = OrderDetails::with('product')->where('order_code', $order_code)->get();
         $order = Order::where('order_code', $order_code)->get();

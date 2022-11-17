@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Models\Order;
+use App\Models\Statistic;
 use Session;
 use  Illuminate\Support\Facades\Redirect;
 
@@ -36,6 +38,33 @@ class AdminController extends Controller
        
     }
     public function logout(){
+        return Redirect::to('/admin');
+    }
+    public function filter_by_date(Request $request){
+         $data = $request->all();
+         $from_date = $data['from_date'];
+         $to_date = $data['to_date'];
+         $get= Statistic::whereBetween('order_date',array($from_date,$to_date))->orderBy('order_date','ASC')->get();
+         
+           
+         foreach($get as $key =>$val){
+                $chart_data = array(
+                    'period'=>$val->order_date,
+                    'order'=>$val->total_order,
+                    'sales'=>$val->sales,
+                    'profit'=>$val->profit,
+                    'quantity'=>$val->quantity
+                );
 
+            }
+         
+          echo $data = json_encode($chart_data);
+           
+             
+        }
+    public function order_date(Request $request){
+        $order_date = $_GET['date'];
+        $order = Order::where('order_date',$order_date)->orderby('create_at','DESC')->get();
+        return view('admin.order_date')->with(compact('order'));
     }
 }

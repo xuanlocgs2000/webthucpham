@@ -18,6 +18,7 @@ use App\Http\Controllers\Cart;
 Route::get('/','HomeController@index');
 Route::get('/trang-chu','HomeController@index');
 Route::post('/tim-kiem','HomeController@search');
+Route::post('/autocomplete-ajax','HomeController@autocomplete_ajax');
 
 //Danh mục sản phẩm
 Route::get('/danh-muc-san-pham/{category_id}','CategoryProduct@show_category_home');
@@ -33,6 +34,8 @@ Route::get('/admin','AdminController@index');
 Route::get('/dashboard','AdminController@show_dashboard');
 Route::post('/admin-dashboard','AdminController@dashboard');
 Route::get('/logout','AdminController@logout');
+Route::post('/filter-by-date','AdminController@filter_by_date');
+
 
 //Danh mục sản phẩm admin
 Route::get('/add-category-product','CategoryProduct@add_category_product');
@@ -66,6 +69,24 @@ Route::get('/unactive-product/{product_id}','ProductController@unactive_product'
 Route::get('/active-product/{product_id}','ProductController@active_product');
 Route::post('/save-product','ProductController@save_product');
 Route::post('/update-product/{product_id}','ProductController@update_product');
+Route::post('/load-comment','ProductController@load_comment');
+Route::post('/send-comment','ProductController@send_comment');
+Route::get('/comment','ProductController@list_comment');
+Route::post('/allow-comment','ProductController@allow_comment');
+Route::post('/reply-comment','ProductController@reply_comment');
+Route::post('/insert-rating','ProductController@insert_rating');
+Route::get('/delete-comment/{comment_id}','ProductController@delete_comment');
+
+
+
+Route::get('/add-gallery/{product_id}','GalleryController@add_gallery');
+Route::post('/select-gallery','GalleryController@select_gallery');
+Route::post('/insert-gallery/{product_id}','GalleryController@insert_gallery');
+Route::post('/update-gallery-name','GalleryController@update_gallery_name');
+Route::post('/delete-gallery','GalleryController@delete_gallery');
+
+
+
 // vận chuyển
 Route::get('/delivery','DeliveryController@delivery');
 Route::post('/select-delivery','DeliveryController@select_delivery');

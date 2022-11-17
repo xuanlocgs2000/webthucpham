@@ -28,8 +28,8 @@
                         @endforeach
                     </div>
                     </div><!--features_items-->
-                    <ul class="pagination pagination-sm m-t-none m-b-none">
+                    {{-- <ul class="pagination pagination-sm m-t-none m-b-none">
                         {!!$post->links()!!}
-                       </ul>
+                       </ul> --}}
                    
 @endsection

@@ -14,26 +14,32 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- bootstrap-css -->
 <link rel="stylesheet" href="{{ asset('public/backend/css/bootstrap.min.css') }}" >
 <!-- //bootstrap-css -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Custom CSS -->
 <link href="{{ asset('public/backend/css/style.css') }}" rel='stylesheet' type='text/css' />
 <link href="{{ asset('public/backend/css/style-responsive.css') }}" rel="stylesheet"/>
 <!-- font CSS -->
 <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 <!-- font-awesome icons -->
+<link rel="shortcut icon " type="image/jpg" href="{{ asset('public/frontend/images/home/logo5.png') }}">
+
 <link rel="stylesheet" href="{{ asset('public/backend/css/font.css') }}" type="text/css"/>
 <link href="{{ asset('public/backend/css/font-awesome.css') }}" rel="stylesheet"> 
 <link rel="stylesheet" href="{{ asset('public/backend/css/morris.css') }}" type="text/css"/>
 <!-- calendar -->
 <link rel="stylesheet" href="{{ asset('public/backend/css/monthly.css') }}">
 <link rel="stylesheet" href="{{asset('public/backend/css/formValidation.min.css')}}" type="text/css"/>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+{{-- morris --}}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 
 <!-- //calendar -->
 <!-- //font-awesome icons -->
 <script src="{{ asset('public/backend/js/jquery2.0.3.min.js') }}"></script>
 <script src="{{ asset('public/backend/js/raphael-min.js') }}"></script>
 <script src="{{ asset('public/backend/js/morris.js') }}"></script>
-
-
+<link rel="stylesheet" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
 <section id="container">
@@ -41,7 +47,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <header class="header fixed-top clearfix">
 <!--logo start-->
 <div class="brand">
-    <a href="index.html" class="logo">
+    <a href="{{ URL::to('/dashboard') }}" class="logo">
         ADMIN
     </a>
     <div class="sidebar-toggle-box">
@@ -58,7 +64,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!-- user login dropdown start-->
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="public/backend/images/2.png">
+                <img alt="" src="{{ asset('public/backend/images/2.png') }}">
                 <span class="username">
 	<?php
 			$name = Session:: get('admin_name');
@@ -107,7 +113,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </li> --}}
 				<li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-image"></i>
                         <span>Slider</span>
                     </a>
                     <ul class="sub">
@@ -130,7 +136,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </li>
 				<li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-book"></i>
+                        <i class="	fa fa-bank"></i>
                         <span>Nhà sản xuất</span>
                     </a>
                     <ul class="sub">
@@ -141,7 +147,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </li>
 				<li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-th"></i>
                         <span>Sản phẩm</span>
                     </a>
                     <ul class="sub">
@@ -150,19 +156,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         
                     </ul>
                 </li>
-				<li class="sub-menu">
+				<li>
+                    <a class="active" href="{{ URL::to('/manage-order ') }}">
+                        <i class="fa fa-calendar-check-o"></i>
+                        <span>Đơn hàng</span>
+                    </a>
+                </li>
+				{{-- <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-calendar-check-o"></i>
                         <span>Đơn hàng</span>
                     </a>
                     <ul class="sub">
 						<li><a href="{{ URL::to('/manage-order ') }}">Quản lí đơn hàng</a></li>
 						
                     </ul>
-                </li>
+                </li> --}}
 				<li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-bullhorn"></i>
                         <span>Bài viết</span>
                     </a>
                     <ul class="sub">
@@ -175,7 +187,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </li>
 				<li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-tag fa-lg"></i>
                         <span>Mã giảm giá</span>
                     </a>
                     <ul class="sub">
@@ -187,7 +199,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				
 				<li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-automobile"></i>
                         <span>Vận chuyển</span>
                     </a>
                     <ul class="sub">
@@ -195,6 +207,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<li><a href="{{ URL::to('/delivery ') }}">Quản lí </a></li>
 
 					</ul>
+                </li>
+				
+				<li>
+                    <a class="active" href="{{ URL::to('/comment ') }}">
+                        <i class="fa fa-american-sign-language-interpreting"></i>
+                        <span>Ý kiến KH</span>
+                    </a>
                 </li>
 				
                 
@@ -210,11 +229,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	@yield('admin_content')
 </section>
  <!-- footer -->
-		  <div class="footer">
+		  {{-- <div class="footer">
 			<div class="wthree-copyright">
-			  <p>© 2021KMA GROUP5</p>
+			  <p>© 2021@KMA GROUP5</p>
 			</div>
-		  </div>
+		  </div> --}}
   <!-- / footer -->
 </section>
 <!--main content end-->
@@ -226,6 +245,189 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="{{ asset('public/backend/js/jquery.nicescroll.js') }}"></script>
 <script src="{{ asset('public/backend/ckeditor/ckeditor.js') }}"></script>
 <script src="{{asset('public/backend/js/jquery.form-validator.min.js')}}"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script>
+	
+	$( function() {
+	  $( "#datepicker" ).datepicker({
+
+	  });
+	  $( "#datepicker2" ).datepicker({
+		  
+		});
+	} );
+	</script>
+<script>
+	$(document).ready(function(){
+		chart30daysorder();
+		var chart = new Morris.Bar({
+			// element: 'chart',
+			// lineColors:['819C79','#2980b9','#27ae60','#95a5a6','#c0392b'],
+			// parseTime:false;
+			// hideHover:'auto',
+			// xkey:'period',
+			// ykeys:['order','sales','profit','quantity'],
+			// labels:['đơn hàng','doanh số','lợi nhuận','số lượng']
+
+		});
+		function chart30daysorder(){
+			
+		}
+	});
+	$('.dashboard-filter').change(function(){
+
+	});
+	$('#btn-dashboard-filter').click(function(){
+		var _token = $('input[name="_token"]').val();
+		var from_date= $('#datepicker').val();
+		var to_date= $('#datepicker2').val();
+		$.ajax({
+				url:"{{ url('/filter-by-date') }}",
+				method: "POST",
+				dataType:"JSON",
+				data: {from_date:from_date,to_date:to_date ,_token:_token},
+				success:function(data){
+					chart.setData(data);
+				}
+			});
+	
+
+	});
+</script>
+<script>
+	$('.comment_duyet_btn').click(function(){
+		var comment_status = $(this).data('comment_status');
+		var comment_id = $(this).data('comment_id');
+		var comment_product_id = $(this).attr('id');
+		// alert(comment_status);
+		// alert(comment_id);
+		// alert(comment_product_id);
+		if(comment_status==0){
+			var alert='Đã duyệt bình luận này';
+		}
+		else{
+			var alert='Hủy duyệt bình luận này';
+		}
+		
+		$.ajax({
+				url:"{{url('/allow-comment')}}",
+				method: "POST",
+				headers:{
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				data:{comment_status:comment_status,comment_id:comment_id,comment_product_id:comment_product_id},
+				success:function(data){
+					location.reload();
+					$('#notify_comment').html('<span class=" text text-alert">'+alert+'</span>');
+				}
+			});
+	});
+	$('.btn-reply-comment').click(function(){
+		var comment_id = $(this).data('comment_id');		
+		var comment = $('.reply_comment_'+comment_id).val();
+		var comment_product_id = $(this).data('product_id');
+		// alert(comment);
+		// alert(comment_id);
+		// alert(comment_product_id);
+		
+		$.ajax({
+				url:"{{url('/reply-comment')}}",
+				method: "POST",
+				headers:{
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				data:{comment:comment,comment_id:comment_id,comment_product_id:comment_product_id},
+				success:function(data){
+					$('.reply_comment').val('') ;
+					location.reload();
+					$('#notify_comment').html('<span class="text text-alert">Đã trả lời bình luận này</span>');
+				}
+			});
+	});
+
+
+</script>
+<script type="text/javascript">
+	$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		load_gallery();
+		function load_gallery(){
+			var pro_id= $('.pro_id').val();
+			var _token = $('input[name="_token"]').val();
+
+			$.ajax({
+				url:"{{ url('/select-gallery') }}",
+				method: "POST",
+				data: {pro_id:pro_id, _token:_token},
+				success:function(data){
+					$('#gallery_load').html(data);
+				}
+			});
+		}
+		$('#file').change(function(){
+			var error= '';
+			var files =$('#file')[0].files;
+			if(files.length>5){
+				error+='<p>Upload tối đa 5 ảnh</p>';
+			}else if(files.length==''){
+				error+='<p>Phải tải ảnh chi tiết sản phẩm</p>';
+			}else if(files.size>2000000){
+				error+='<p>Ảnh tải lên không hợp lệ</p>';
+			}
+			if(error==''){
+
+			}else{
+				$('#file').val('');
+				$('#error_gallery').html('<span class="text-danger">'+error+'</span>');
+				return false;
+			}
+
+
+		});
+		$(document).on('blur','.edit_gal_name',function(){
+			var gal_id = $(this).data('gal_id');
+			var gal_text = $(this).text();
+			// alert(gal_id);
+			// alert(gal_text);
+			var _token = $('input[name="_token"]').val();
+
+			$.ajax({
+				url:"{{ url('/update-gallery-name') }}",
+				method: "POST",
+				data: {gal_id:gal_id,gal_text:gal_text ,_token:_token},
+				success:function(data){
+					load_gallery();
+					$('#error_gallery').html('<span class="text-danger">update thành công</span>');
+				}
+			});
+		
+
+		});
+		$(document).on('click','.delete-gallery',function(){
+			var gal_id = $(this).data('gal_id');
+			var _token = $('input[name="_token"]').val();
+			if(confirm('Bạn chắc chắn muốn xóa ảnh này?')){
+				$.ajax({
+				url:"{{ url('/delete-gallery') }}",
+				method: "POST",
+				data: {gal_id:gal_id,_token:_token},
+				success:function(data){
+					load_gallery();
+					$('#error_gallery').html('<span class="text-danger">Xoá thành công</span>');
+				}
+			});
+			}		
+		});
+	});
+
+</script>
+
 <script type="text/javascript">
 	$.validate({
 		
@@ -421,7 +623,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
 <script src="js/jquery.scrollTo.js"></script>
 <!-- morris JavaScript -->	
-<script>
+{{-- <script>
 	$(document).ready(function() {
 		//BOX BUTTON SHOW AND CLOSE
 	   jQuery('.small-graph-box').hover(function() {
@@ -475,9 +677,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		
 	   
 	});
-	</script>
+	</script> --}}
 <!-- calendar -->
-	<script type="text/javascript" src="{{ asset('public/backend/js/monthly.js') }}"></script>
+	{{-- <script type="text/javascript" src="{{ asset('public/backend/js/monthly.js') }}"></script>
 	<script type="text/javascript">
 		$(window).load( function() {
 
@@ -506,7 +708,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		}
 
 		});
-	</script>
+	</script> --}}
 	<!-- //calendar -->
 </body>
 </html>

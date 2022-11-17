@@ -34,7 +34,7 @@ class PostController extends Controller
     }
     public function all_post(){
         $this->AuthLogin();
-        $all_post= Post::with('cate_post')->orderBy('post_id')->paginate(10);
+        $all_post= Post::with('cate_post')->orderBy('post_id')->get();
 
 
         return view('admin.post.list_post')->with(compact('all_post',$all_post));
@@ -148,7 +148,7 @@ class PostController extends Controller
             $url_canonical = $request->url();
         }
         $post = Post::with('cate_post')->where('post_status',0)
-        ->where('cate_post_id',$cate_id)->paginate(5);
+        ->where('cate_post_id',$cate_id)->get();
       
 
         return view('pages.baiviet.danhmucbaiviet')

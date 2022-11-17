@@ -59,12 +59,12 @@
                     <?php
                     if($brand_pro->brand_status ==0){
                       ?>
-                      <a href="{{ URL::to('/unactive-brand-product/'.$brand_pro->brand_id) }}" ><span  class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                      <a href="{{ URL::to('/unactive-brand-product/'.$brand_pro->brand_id) }}" ><span  class="">Yes</span></a>
                     <?php
                     }
                     else{
                       ?>
-                      <a href="{{ URL::to('/active-brand-product/'.$brand_pro->brand_id) }}." ><span  class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+                      <a href="{{ URL::to('/active-brand-product/'.$brand_pro->brand_id) }}." ><span style="color: brown" class="">No</span></a>
 
                     <?php
                     }

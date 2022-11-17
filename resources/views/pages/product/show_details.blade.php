@@ -11,19 +11,24 @@
             max-width: 100%;
 }
     li.active {
-        border: 2px solid #2ecc71;
+        border: 2px solid #218c74;
     }
     </style>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb" style="background: none">
+          <li class="breadcrumb-item"><a href="{{ url('/') }}">Trang chủ</a></li>
+          <li class="breadcrumb-item"><a href="{{ url('/danh-muc-san-pham/'.$cate_slug ) }}">{{ $product_cate }}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{ $meta_title }}</li>
+        </ol>
+      </nav>
     <div class="col-sm-5">
         <ul id="lightSlider">
-            <li data-thumb="{{ asset('public/frontend/images/shop/product10.jpg') }}" 
-            data-src="{{ asset('public/frontend/images/shop/product10.jpg') }}">
-            <img width="100%" src="{{ asset('public/frontend/images/shop/product10.jpg') }}" alt="">
+            @foreach($gallery as $key=>$gal)
+            <li data-thumb="{{ asset('public/upload/gallery/'.$gal->gallery_image) }}" 
+            data-src="{{ asset('public/upload/gallery/'.$gal->gallery_image) }}">
+            <img width="100%" src="{{ asset('public/upload/gallery/'.$gal->gallery_image) }}" alt="">
             </li>
-            <li data-thumb="{{ asset('public/frontend/images/shop/product8.jpg') }}" 
-            data-src="{{ asset('public/frontend/images/shop/product10.jpg') }}">
-            <img width="100%" src="{{ asset('public/frontend/images/shop/product10.jpg') }}" alt="">
-            </li>
+            @endforeach
         </ul>
     </div>
     <div class="col-sm-7">
@@ -48,7 +53,7 @@
                 <input name="productid_hidden" type="hidden"  value="{{$value->product_id}}" />
             </span>
              <br>
-            <input type="button" value="Mua ngay" class="btn btn-primary btn-sm add-to-cart" data-id_product="{{$value->product_id}}" name="add-to-cart">
+            <input type="button" value="Mua ngay" class=" btn btn-lg add-to-cart" data-id_product="{{$value->product_id}}" name="add-to-cart">
             </form>
             <br>
                                             
@@ -64,14 +69,14 @@
 <div class="category-tab shop-details-tab"><!--category-tab-->
     <div class="col-sm-12">
         <ul class="nav nav-tabs">
-            <li class="active" ><a href="#details" data-toggle="tab">Chi tiết sản phẩm</a></li>
+            <li ><a href="#details" data-toggle="tab">Chi tiết sản phẩm</a></li>
             <li><a href="#companyprofile" data-toggle="tab">Nhà cung cấp</a></li>
             {{-- <li><a href="#tag" data-toggle="tab">Tag</a></li> --}}
-            <li ><a href="#reviews" data-toggle="tab">Đánh giá (5)</a></li>
+            <li  class="active"  ><a href="#reviews" data-toggle="tab">Đánh giá (5)</a></li>
         </ul>
     </div>
     <div class="tab-content">
-        <div class="tab-pane fade active in" id="details" >
+        <div class="tab-pane " id="details" >
            <p>{!! $value->product_desc !!}</p>
             
            
@@ -100,25 +105,60 @@
 
         </div> --}}
         
-        <div class="tab-pane fade " id="reviews" >
+        <div class="tab-pane  fade active in " id="reviews" >
             <div class="col-sm-12">
-                <ul>
+                {{-- <ul>
                     <li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
                     <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
                     <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                <p><b>Write Your Review</b></p>
+                </ul> --}}
+                <style>
+                    .style_comment{
+                        border: 1px solid #ddd;
+                        border-radius: 10px;
+                        background: #f1f1e9;
+                    }
+                </style>
+                <form action="">
+                    @csrf
+                    <input type="hidden" class="comment_product_id" name="comment_product_id" value="{{ $value->product_id }}">
+                    <div id="comment_show"></div>
                 
-                <form action="#">
+                
+            </form>
+                <p><b>Nhận xét của bạn về sản phẩm</b></p>
+                 <ul class="list-inline rating" title="Average Rating">
+                     @for($count=1; $count<=5; $count++)
+                     @php
+                        if($count<=$rating){
+                            $color= 'color:#ffcc00;';
+                        }
+                        else{
+                            $color= 'color:#ccc;';
+
+                        }
+                     @endphp
+                <li title="star_rating" id="{{ $value->product_id }}-{{ $count }}" 
+                    data-index="{{ $count }}" data-product_id="{{$value->product_id}}"
+                    data-rating="{{ $rating }}" class="rating" style="cursor:pointer; {{ $color }} font-size:30px">
+                    &#9733; 
+
+                </li>
+            @endfor
+                 </ul>
+                <form action="#">  
                     <span>
-                        <input type="text" placeholder="Your Name"/>
-                        <input type="email" placeholder="Email Address"/>
-                    </span>
-                    <textarea name="" ></textarea>
+                        <input style="width:40%; margin-left:0" class="comment_name"
+                         type="text" placeholder="Name"/>   
+                    </span>               
+                                          
+                    
+                    <textarea name="comment" class="comment_content" ></textarea>
+                    <div id="notify_comment"></div>
+
                     <b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
-                    <button type="button" class="btn btn-default pull-right">
-                        Submit
+                    <button type="button" class="btn btn-default pull-right send-comment">
+                        Bình luận
                     </button>
                 </form>
             </div>
